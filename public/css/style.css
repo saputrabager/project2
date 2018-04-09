@@ -1,0 +1,146 @@
+/* buton */
+.button{
+    padding: 4px 20px;
+    background: #4833b7;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.button:hover{
+    text-decoration: unset;
+    background: #5b99b1;
+    color: #555
+}
+
+.clearfix:after { 
+    content: "";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+  }
+
+
+.user-info{
+	width: 100%
+}
+
+.searchpanel{
+	background: #5b99b1;
+    padding: 12px 14px;
+    border-radius: 6px;
+    text-align: center;
+    margin: 10px 0px;
+}
+
+.form-search{
+	width: 30%;
+	margin: 5px;
+}
+
+.newpost{
+	font-size: 30px;
+	position: fixed;
+    bottom: 2%;
+    right: 8%;
+}
+
+.form1{
+	border: 1px solid #e6dfdf;
+    padding: 20px;
+    background: #eff1f5;
+    margin-bottom: 10px
+}
+
+.body{
+    background: #f3f7f9;
+    border: 1px solid #5b99b1;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.labelpost{
+    width: 90px;
+    margin-right: 50px;
+    margin-bottom: 27px;
+}
+
+.form-group{
+    padding: 10px
+}
+
+.hidden{
+    display: none;
+}
+
+.title{
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.p-info{
+    font-size: 12px
+}
+
+.info{
+    margin-right: 0.5em
+}
+
+.divider{
+    width: 100%;
+    height: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #c0ade6;
+}
+
+.content{
+    min-height: 200px
+}
+
+.f_label{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.f_display{
+    background: #dcd9d9;
+    min-height: 20px;
+}
+
+.f_info{
+    display: inline-grid;
+    width: 49%;
+}
+
+.marig{
+    margin-right: 241px;
+    float: right;
+}
+
+.right{
+    float: right !important;
+}
+
+.buble{
+    margin-bottom: 20px;
+    border: 1px solid #e6dfdf;
+    border-radius: 4px;
+}
+
+.buble-header{
+    padding: 10px;
+    font-weight: bold;
+    border-bottom: 1px solid #e6dfdf;
+    background: #c0cdea;
+}
+
+.buble-body{
+    padding: 10px;
+}
+
+.buble-info{
+    padding: 5px;
+    text-align: right;
+}
