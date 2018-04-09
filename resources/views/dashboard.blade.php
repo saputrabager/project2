@@ -4,7 +4,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="height: auto;">
         <section class="content-header">
             <h1>
                 Dashboard
@@ -15,63 +15,59 @@
                 <li class="active">Dashboard</li>
             </ol>
         </section>
-        <section class="content">
-            <div class="row">
-                <table id="pageTable" class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>NO</th>
-                            <th>NO ASSETS</th>
-                            <th>DESCRIPTION</th>
-                            <th>MIC</th>
-                            <th>CATEGORY</th>
-                            <th>PARENT</th>
-                            <th>LOCATION</th>
-                            <th>CONDITIONS</th>
-                            <th>FIGURE</th>
-                        </tr>
-                    </thead>
+        <div class="col-md-12">
+            <section class="content">
+                <div class="row">
+                    <table id="pageTable" class="table table-bordered table-hover stripe">
+                        <thead>
+                            <tr>
+                                <th>NO</th>
+                                <th>NO ASSETS</th>
+                                <th>DESCRIPTION</th>
+                                <th>MIC</th>
+                                <th>BOOK VALUE</th>
+                                <th>CATEGORY</th>
+                                <th>PARENT</th>
+                                <th>LOCATION</th>
+                                <th>CONDITIONS</th>
+                                <th>FIGURE</th>
+                            </tr>
+                        </thead>
 
-                    <tbody>
-                        @foreach ($val as $item)
-                        <tr>
-                            <td></td>
-                            <td>
-                                {{ $item->NO_ASSET }}
-                            </td>
-                            <td>
-                                {{ $item->DESCRIPTION }}
-                            </td>
-                            <td>
-                                {{ $item->MIC }}
-                            </td>
-                            <td>
-                                {{ $item->CATEGORY }}
-                            </td>
-                            <td>
-                                {{ $item->PARENT }}
-                            </td>
-                            <td>
-                                {{ $item->LOCATION }}
-                            </td>
-                            <td>
-                                {{ $item->CONDITION }}
-                            </td>
-                            <td>
-                                {{ $item->FIGURE }}
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </section>
+                        <tbody id="dt-table">
+                        </tbody>
+                    </table>
+                    <div id="chart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                </div>
+
+                
+            </section>
+        </div><div class='clearfix'></div>
+        
     </div>
 @endsection
 @section('scripts')
-    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/highcharts/charts.js') }}"></script>
     <script>
+        var datatable = <?php echo $val?>;
+        var i = 1;
+        $.each(datatable, function(key,val){
+            data = 
+            "<tr>" + 
+            "<td>" + i + "</td>" +
+            "<td>" + val.NO_ASSET + "</td>" +
+            "<td>" + val.DESCRIPTION + "</td>" +
+            "<td>" + val.MIC + "</td>" +
+            "<td>" + "" + "</td>" +
+            "<td>" + val.CATEGORY + "</td>" +
+            "<td>" + val.PARENT + "</td>" +
+            "<td>" + val.LOCATION + "</td>" +
+            "<td>" + val.CONDITIONS + "</td>" +
+            "<td>" + val.FIGURE + "</td>" +
+            "</tr>";
+            i ++;
+            $('#dt-table').append(data);
+        });
          jQuery(function($) {
         //initiate dataTables plugin
         var myTable = 
