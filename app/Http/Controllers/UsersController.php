@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\users;
+use App\User;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -81,5 +81,14 @@ class UsersController extends Controller
     public function destroy(users $users)
     {
         //
+    }
+
+    public function setRole(){
+        $user = new User;
+        $data =  $user->all();
+        $users = json_decode($data, true);
+        // print_r($users);exit;
+
+        return view('setRole', compact('users'));
     }
 }

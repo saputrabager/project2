@@ -20,9 +20,9 @@
 <body>
     <div id="app">
         <header>
-            <img src="{{ asset ('images/housebanner.jpg')}}" style="width: 100%; height: 140px">
+            <!-- <img src="{{ asset ('images/housebanner.jpg')}}" style="width: 100%; height: 140px"> -->
         </header>
-        <nav class="navbar navbar-default navbar-static-top" style="background: #a8e6c7">
+        <nav class="navbar navbar-default navbar-static-top" style="background: #ffffff">
             <div class="container">
                 <div class="navbar-header">
 

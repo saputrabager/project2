@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class inventory extends Model
 {
-    protected $primaryKey = 'NO_ASSET';
+    // public $primaryKey = 'NO_ASSET';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'DESCRIPTION', 'MIC', 'CATEGORY', 'PARENT', 'LOCATION', 'CONDITIONS'. 'FIGURE'
+        'NO_ASSET','NO_EQUUIPMENT', 'DESCRIPTION', 'MIC','BOOK_VALUE', 'CATEGORY', 'PARENT', 'LOCATION', 'CONDITIONS'. 'FIGURE'
     ];
 
     

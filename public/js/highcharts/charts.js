@@ -1,11 +1,27 @@
-Highcharts.chart('chart', {
+function chart(data){
+
+	
+	ready = fillterArray(data, "1");
+	notReady = fillterArray(data, "2");
+	underMtc = fillterArray(data, "3");
+	idle = fillterArray(data, "4");
+	onJob = fillterArray(data, "5");
+	total = data.length;
+
+	idePercentage = idle / total * 100;
+	readyPercentage = ready/total * 100;
+	notReadyPercentage = notReady/total * 100;
+	onJobPercentage = onJob/total * 100;
+	underMtcPercentage = underMtc/total * 100;
+
+	Highcharts.chart('chart', {
 	    chart: {
 	        plotBackgroundColor: null,
 	        plotBorderWidth: 0,
 	        plotShadow: false
 	    },
 	    title: {
-	        text: 'Browser<br>shares<br>2017',
+	        text: '',
 	        align: 'center',
 	        verticalAlign: 'top',
 	        y: 40
@@ -33,18 +49,21 @@ Highcharts.chart('chart', {
 	        name: 'Browser share',
 	        innerSize: '50%',
 	        data: [
-	            ['Chrome', 58.9],
-	            ['Firefox', 13.29],
-	            ['Internet Explorer', 13],
-	            ['Edge', 3.78],
-	            ['Safari', 3.42],
-	            {
-	                name: 'Other',
-	                y: 7.61,
-	                dataLabels: {
-	                    enabled: false
-	                }
-	            }
+	            ['Ready', readyPercentage],
+	            ['Not Ready', notReadyPercentage],
+	            ['Idle', idePercentage],
+	            ['Under Mtc', underMtc],
+	            ['On Job', onJobPercentage]
 	        ]
 	    }]
 	});
+}
+
+function fillterArray(data, status){
+	var filltered = data.filter ( function ( d ) {
+    return d.CONDITIONS == status;
+	});
+
+	return filltered.length;
+
+}

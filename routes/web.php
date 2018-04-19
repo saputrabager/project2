@@ -17,6 +17,29 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::post('/post-data-inventory', 'inventoryController@store')->name('post.invnty');
+
+Route::get('/get-inventory/{id}', 'inventoryController@getInventoryById')->name('get.asset');
+
+Route::post('/post-update-inventory', 'inventoryController@update')->name('update.invnty');
+
+Route::get('/get-data-table', 'HomeController@dataTable')->name('data.table');
+
+Route::get('/data-table', 'DatatablesController@anyData')->name('table');
+
+Route::get('/data-table-loc', 'DatatablesController@anyLocation')->name('tableLocation');
+
+Route::get('/get-location', 'LocationController@index')->name('get.location');
+
+Route::post('/post-location', 'LocationController@store')->name('post.location');
+
+Route::post('/update-location', 'LocationController@update')->name('update.location');
+
+Route::get('/get-location-name', 'LocationController@getName')->name('location.name');
+
+Route::get('/set-role', 'UsersController@setRole')->name('role');
+
+
 Route::get('/posts', 'PostsController@index');
 
 Route::post('/result', 'ResultController@show')->name('result');

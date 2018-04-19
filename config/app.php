@@ -164,7 +164,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
-        
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,        
 
 
         /*
@@ -231,6 +232,7 @@ return [
         'Form' => Illuminate\Html\FormFacade::class,
         'Html' => Illuminate\Html\HtmlFacade::class,
         'laravelangular' => Jadjoubran\LaravelAngular\Provider\LaravelServiceProvider::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

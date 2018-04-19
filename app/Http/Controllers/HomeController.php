@@ -24,15 +24,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $inventory = new inventory;
-        $val = $inventory->get();
+        
         // print_r($val);exit;
         
-        return view('dashboard', compact('val'));
+        return view('dashboard');
     }
 
-    public function newpost(){
-        return view('newpost');
+    public function dataTable(){
+        $inventory = new inventory;
+        $val = $inventory->get();
+
+        return $val;
     }
 
     public function create()

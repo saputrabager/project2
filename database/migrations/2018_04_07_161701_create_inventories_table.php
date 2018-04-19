@@ -15,8 +15,10 @@ class CreateInventoriesTable extends Migration
     {
         Schema::create('inventories', function (Blueprint $table) {
             $table->string('NO_ASSET');
+            $table->string('NO_EQUIPMENT');
             $table->string('DESCRIPTION');
             $table->string('MIC');
+            $table->string('BOOK_VALUE');
             $table->string('CATEGORY');
             $table->string('PARENT');
             $table->string('LOCATION');

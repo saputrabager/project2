@@ -1,5 +1,5 @@
 <header class="main-header">
-    <a href="" class="logo">
+    <a href="{{route('home')}}" class="logo">
         <span class="logo-mini"><b>A</b>LT</span>
         <span class="logo-lg"><b>Admin</b>LTE</span>
     </a>
@@ -12,19 +12,27 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="{{asset('images/user.png')}}" class="user-image" alt="User Image" />
-                        <span class="hidden-xs">Inventory</span>
+                        <span class="hidden-xs">{{\Auth::user()->username}}</span>
                     </a>
                     <ul class="dropdown-menu">
                     <!-- User image -->
                         <li class="user-header">
                             <img src="{{asset('images/user.png')}}" class="img-circle" alt="User Image" />
                             <p>
-                                Inventory
+                                {{\Auth::user()->username}}
                             </p>
                         </li>
                         <li class="user-footer">
                             <div class="pull-right">
-                                <a href="" class="btn btn-default">Sign out</a>
+                                <a href="{{ route('logout') }}" class="btn btn-default"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
                             </div>
                         </li>
                     </ul>

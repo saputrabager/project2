@@ -50,12 +50,14 @@
 
             .title {
                 font-size: 84px;
+                color: #fff;
+                font-size: bold;
             }
 
             .links > a {
-                color: #636b6f;
+                color: #fff;
                 padding: 0 25px;
-                font-size: 12px;
+                font-size: 16px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
@@ -64,6 +66,9 @@
 
             .m-b-md {
                 margin-bottom: 30px;
+                background-color: #8884849e;
+                padding: 5px 5px;
+                border-radius: 20px;
             }
             .center {
                 position: absolute;
@@ -76,23 +81,22 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
             <div class="content">
-                <!-- <img src="{{asset ('images/home.jpg')}}" style="width: 100%"> -->
+                <img src="{{asset ('images/BGR.jpg')}}" style="width: 100%">
                     <div class="center">
                         <div class="title m-b-md">
                             INVENTORY
                         </div>
+                        @if (Route::has('login'))
+                            <div class="links">
+                                @auth
+                                    <a href="{{ url('/home') }}">Home</a>
+                                @else
+                                    <a href="{{ route('login') }}">Login</a>
+                                    <a href="{{ route('register') }}">Register</a>
+                                @endauth
+                            </div>
+                        @endif
                     </div>
             </div>
         </div>
