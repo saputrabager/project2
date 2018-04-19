@@ -83,12 +83,32 @@ class UsersController extends Controller
         //
     }
 
-    public function setRole(){
-        $user = new User;
-        $data =  $user->all();
-        $users = json_decode($data, true);
+    public function getRole(){
+        // $user = new User;
+        // $data =  $user->all();
+        // $users = json_decode($data, true);
         // print_r($users);exit;
 
-        return view('setRole', compact('users'));
+        return view('setRole');
+    }
+
+    public function setRole(Request $request){
+        $user = new User;
+        $input = request()->all();
+
+        request()->validate([
+
+            'name' => 'required',
+
+        ]);
+
+        $user = location::find($input['id']);
+
+        $user->role = $input['role'];
+
+        $user->save();
+        
+            $validate = 1;
+            return $validate;
     }
 }

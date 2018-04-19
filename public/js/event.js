@@ -34,3 +34,11 @@ $('#tableLoc tbody').on( 'click', '#edit', function () {
     $('#storeLoc').hide();
     console.log( data );
 } );
+
+$('#userTable tbody').on( 'click', '#edit', function () {
+    var data = $('#userTable').DataTable().row( $(this).parents('tr') ).data();
+    $('#name').val(data['name']);
+    $('#role-level').val(data['role']).trigger('change');
+    $('#myModal').modal('toggle');
+    console.log( data );
+} );

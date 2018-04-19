@@ -190,6 +190,7 @@
             });
 
             $('.js-example-basic-single').select2();
+            $('.select2').attr('width','450px');
 
             editor = new $.fn.dataTable.Editor( {
                 ajax: "../php/staff.php",
@@ -297,9 +298,9 @@
                     },
                 ],
                 buttons: [
-                    { extend: "create", editor: editor },
-                    { extend: "edit",   editor: editor },
-                    { extend: "remove", editor: editor }
+                    // { extend: "create", editor: editor },
+                    // { extend: "edit",   editor: editor },
+                    // { extend: "remove", editor: editor }
                 ]
             });
 

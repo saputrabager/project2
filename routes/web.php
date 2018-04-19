@@ -29,6 +29,8 @@ Route::get('/data-table', 'DatatablesController@anyData')->name('table');
 
 Route::get('/data-table-loc', 'DatatablesController@anyLocation')->name('tableLocation');
 
+Route::get('/data-table-user', 'DatatablesController@anyUser')->name('tableUser');
+
 Route::get('/get-location', 'LocationController@index')->name('get.location');
 
 Route::post('/post-location', 'LocationController@store')->name('post.location');
@@ -37,7 +39,9 @@ Route::post('/update-location', 'LocationController@update')->name('update.locat
 
 Route::get('/get-location-name', 'LocationController@getName')->name('location.name');
 
-Route::get('/set-role', 'UsersController@setRole')->name('role');
+Route::get('/get-role', 'UsersController@getRole')->name('role');
+
+Route::post('/set-role', 'UsersController@setRole')->name('setRole');
 
 
 Route::get('/posts', 'PostsController@index');

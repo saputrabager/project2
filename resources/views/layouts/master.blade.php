@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{asset('vendor/font-awesome/css/font-awesome.min.css')}}" />
     <link rel="stylesheet" href="{{asset('vendor/DataTables/datatables.min.css')}}"/>
     <!-- select2 -->
-    <link rel="stylesheet" href="{{asset('select2-4.0.5/dist/css/select2.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('vendor/select2-4.0.5/dist/css/select2.min.css')}}"/>
 
     @yield('stylesheets')
 </head>

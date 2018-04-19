@@ -29,4 +29,14 @@ class DatatablesController extends Controller
 
     return DataTables::of($model)->toJson();
     }
+
+    public function anyUser()
+    {
+
+    $user = new User;
+
+    $model = $user::query();
+
+    return DataTables::of($model)->toJson();
+    }
 }
