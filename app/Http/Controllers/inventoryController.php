@@ -24,7 +24,7 @@ class inventoryController extends Controller
 
         ]);
 
-    	$no_asset = inventory::where('no_asset', $input['no_asset'])->count();
+    	$no_asset = inventory::where('no_equipment', $input['no_equipment'])->count();
     	if ($no_asset==1){
     		$validate = '0';
     		return $validate;
@@ -76,8 +76,8 @@ class inventoryController extends Controller
             // $this->postImage->add($input);
             $no_asset = $inventory::where('no_asset', $input['no_asset'])
             ->update([
-                'NO_ASSET' => $input['no_asset'],
                 'NO_EQUIPMENT' => $input['no_equipment'],
+                'NO_ASSET' => $input['no_asset'],
                 'DESCRIPTION' => $input['description'],
                 'MIC' => $input['mic'],
                 'BOOK_VALUE' => $input['book_val'],
@@ -97,9 +97,16 @@ class inventoryController extends Controller
     	$inventory = new inventory;
 
     	$requestedAsset  = $asset;
-    	$no_asset = inventory::where('no_asset', $asset)->first();
+    	$no_asset = inventory::where('no_equipment', $asset)->first();
 
     	return $no_asset;
     	
+    }
+
+    public function delet($id){
+        $inventory = inventory::where('no_equipment', '=', $id)->delete();
+
+        return redirect()->route('home');
+        
     }
 }

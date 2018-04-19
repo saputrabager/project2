@@ -67,4 +67,11 @@ class LocationController extends Controller
                            ->get();
         return $data;
     }
+
+    public function delet($id){
+
+        location::destroy($id);
+        return redirect()->route('get.location');
+        
+    }
 }

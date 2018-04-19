@@ -6,7 +6,6 @@
             <div class="row">
                 <h1>
                     Dashboard
-                    <small>Control panel</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -22,8 +21,8 @@
                         <thead>
                             <tr>
                                 <th>NO</th>
-                                <th>NO ASSETS</th>
                                 <th>NO EQUIPMENT</th>
+                                <th>NO ASSETS</th>
                                 <th>DESCRIPTION</th>
                                 <th>MIC</th>
                                 <th>BOOK VALUE</th>
@@ -86,15 +85,15 @@
                 <form id="formInput"  method="POST" class="form-horizontal" role="form">
                     {{csrf_field()}}
                   <div class="form-group">
-                    <label  class="col-sm-2 control-label" for="no_asset">NO Asset</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="no_asset" name="no_asset" placeholder="No Asset"/>
-                    </div>
-                  </div>
-                  <div class="form-group">
                     <label  class="col-sm-2 control-label" for="no_equipment">NO Equipment</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="no_equipment" name="no_equipment" placeholder="No Asset"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label  class="col-sm-2 control-label" for="no_asset">NO Asset</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="no_asset" name="no_asset" placeholder="No Asset"/>
                     </div>
                   </div>
                   <div class="form-group">
@@ -245,8 +244,8 @@
                             return meta.settings._iDisplayStart + meta.row + 1;
                         },
                     },
-                    { data: 'NO_ASSET', name: 'NO_ASSET' },
                     { data: 'NO_EQUIPMENT', name: 'NO_EQUIPMENT' },
+                    { data: 'NO_ASSET', name: 'NO_ASSET' },
                     { data: 'DESCRIPTION', name: 'DESCRIPTION' },
                     { data: 'MIC', name: 'MIC' },
                     { data: 'BOOK_VALUE', render: $.fn.dataTable.render.number( ',', '.', 0, 'Rp ' )},
@@ -291,9 +290,12 @@
                         searchable: false,
                         orderable: false,
                         "render": function (data, type, row, meta) {
-                            var edit = "<a style='cursor:pointer' id='edit'><i class='fa fa-edit' title='edit'></i></a>";
-
-                            return edit;
+                            var edit = "<a class='pull-left button' style='margin-right: 4px' id='edit'><i class='fa fa-edit'  title='edit'></i></a>";
+                            var dlt = '';
+                            if (role == 'super-admin'){
+                                var dlt = "<a href='{{url('/delet-inventory/')}}/" + row.NO_EQUIPMENT + "' class='pull-left button-red' style='margin-right: 4px' id='dlt'><i class='fa fa-trash'  title='delete'></i></a>";
+                            }
+                            return edit+dlt;
                         },
                     },
                 ],
@@ -381,7 +383,7 @@
                                 var errors;
 
                                 /* Build up errors object, name of input and error message: */
-                                errors = { no_asset: "Nomor asset sudah terdaftar" };
+                                errors = { no_equipment: "Nomor equipment sudah terdaftar" };
                                 /* Show errors on the form */
                                 $validator.showErrors(errors);
                             } else {

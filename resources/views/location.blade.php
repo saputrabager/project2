@@ -6,7 +6,7 @@
             <div class="row">
                 <h1>
                     Dashboard
-                    <small>Control panel</small>
+                    <small>Location</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -90,12 +90,18 @@
                         searchable: false,
                         orderable: false,
                         "render": function (data, type, row, meta) {
-                            var edit = "<a class='pull-right button' style='margin-top: -4px'  ><i class='fa fa-edit' id='edit' title='edit'></i></a>";
-
-                            return edit;
+                            var edit = "<a class='pull-left button' style='margin-right: 4px' id='edit'><i class='fa fa-edit'  title='edit'></i></a>";
+                            var dlt = '';
+                            if (role == 'super-admin'){
+                                var dlt = "<a href='{{url('/delet-location/')}}/" + row.ID + "' class='pull-left button-red' style='margin-right: 4px' id='dlt'><i class='fa fa-trash'  title='delete'></i></a>";
+                            }
+                            return edit+dlt;
                         },
                     },
                 ],
+                columnDefs: [
+                    { width: "20%", targets: 2 }
+                ]
             }).ajax.reload();
 
 		// $('#tableLoc').Tabledit({

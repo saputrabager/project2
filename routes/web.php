@@ -23,6 +23,8 @@ Route::get('/get-inventory/{id}', 'inventoryController@getInventoryById')->name(
 
 Route::post('/post-update-inventory', 'inventoryController@update')->name('update.invnty');
 
+Route::get('/delet-inventory/{id}','inventoryController@delet')->name('delet.inventory');
+
 Route::get('/get-data-table', 'HomeController@dataTable')->name('data.table');
 
 Route::get('/data-table', 'DatatablesController@anyData')->name('table');
@@ -37,11 +39,15 @@ Route::post('/post-location', 'LocationController@store')->name('post.location')
 
 Route::post('/update-location', 'LocationController@update')->name('update.location');
 
+Route::get('/delet-location/{id}','LocationController@delet')->name('delet.location');
+
 Route::get('/get-location-name', 'LocationController@getName')->name('location.name');
 
 Route::get('/get-role', 'UsersController@getRole')->name('role');
 
 Route::post('/set-role', 'UsersController@setRole')->name('setRole');
+
+Route::get('/delet-role/{id}','UsersController@destroy')->name('delet.user');
 
 
 Route::get('/posts', 'PostsController@index');

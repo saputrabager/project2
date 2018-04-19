@@ -57,6 +57,9 @@
     <script src="{{ asset('vendor/select2-4.0.5/dist/js/select2.min.js') }}"></script>
     <!-- event js -->
     <script src="{{ asset('js/event.js') }}"></script>
+    <script type="text/javascript">
+        role = '{{Auth::user()->role}}';
+    </script>
     
     @yield('scripts')
 </body>
