@@ -55,6 +55,8 @@
     <!-- <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script> -->
     <!-- select2 -->
     <script src="{{ asset('vendor/select2-4.0.5/dist/js/select2.min.js') }}"></script>
+    <!-- sweet alert -->
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     <!-- event js -->
     <script src="{{ asset('js/event.js') }}"></script>
     <script type="text/javascript">

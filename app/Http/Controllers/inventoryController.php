@@ -106,7 +106,14 @@ class inventoryController extends Controller
     public function delet($id){
         $inventory = inventory::where('no_equipment', '=', $id)->delete();
 
-        return redirect()->route('home');
+        // return redirect()->route('home')->with('delete', 'data deleted successfully.');;
+        $validate = '1';
+        return $validate;
         
+    }
+
+    public function afterD($id){
+
+         return view('dashboard' , compact('id'));
     }
 }

@@ -25,6 +25,8 @@ Route::post('/post-update-inventory', 'inventoryController@update')->name('updat
 
 Route::get('/delet-inventory/{id}','inventoryController@delet')->name('delet.inventory');
 
+Route::get('/home/{id}', 'inventoryController@afterD')->name('home.mesage');
+
 Route::get('/get-data-table', 'HomeController@dataTable')->name('data.table');
 
 Route::get('/data-table', 'DatatablesController@anyData')->name('table');
@@ -57,6 +59,8 @@ Route::post('/result', 'ResultController@show')->name('result');
 Route::get('/newpost', 'HomeController@newpost')->name('newpost');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
 
 Route::get('/image-upload','ImageUploadController@imageUpload')->name('image.upload');
 

@@ -154,8 +154,8 @@
                   </div>
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button id="updateInvent" type="submit" onclick="updatetData()" class="btn btn-default" style="display: none;">Update</button>
-                        <button id="storeInvent" type="submit" onclick="insertData()" class="btn btn-default">Save</button>
+                        <button id="updateInvent" type="submit" onclick="updatetDataAsset()" class="btn btn-default" style="display: none;">Update</button>
+                        <button id="storeInvent" type="submit" onclick="insertDataAsset()" class="btn btn-default">Save</button>
                         <button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                   </div>
@@ -172,6 +172,15 @@
 @section('scripts')
     <script>
         jQuery(function($) {
+
+            var delet = '{{ (isset($delete) ? $delete : '' )}}';
+            if (delet != ''){
+                swal({
+                      title: "Good job!",
+                      text: "You have delete the record!",
+                      icon: "success",
+                    });
+            }
 
             $.ajax({
                 type: "GET",
@@ -293,8 +302,10 @@
                             var edit = "<a class='pull-left button' style='margin-right: 4px' id='edit'><i class='fa fa-edit'  title='edit'></i></a>";
                             var dlt = '';
                             if (role == 'super-admin'){
-                                var dlt = "<a href='{{url('/delet-inventory/')}}/" + row.NO_EQUIPMENT + "' class='pull-left button-red' style='margin-right: 4px' id='dlt'><i class='fa fa-trash'  title='delete'></i></a>";
+                                var dlt = "<a onclick='delet(" + row.NO_EQUIPMENT + ")' class='pull-left button-red' style='margin-right: 4px' id='dlt'><i class='fa fa-trash'  title='delete'></i></a>";
                             }
+
+                            // var filter = "<a class='pull-left button-red' onclick= 'filter()' style='margin-right: 4px' id='ff'>test</i></a>";
                             return edit+dlt;
                         },
                     },
@@ -324,160 +335,10 @@
             drawChart();
         });
 
-        window.BASE_URL = '{{env("API_URL")}}';
+        window.BASE_URL = "{{URL::to('/')}}";
         $.ajaxSetup({
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
         });
-
-        
-        function insertData(){
-            
-            $("#formInput").validate({
-            ignore: [],
-            debug:true,
-            rules : {
-                no_asset : "required",
-                no_equipment : "required",
-                description : "required",
-                mic : "required",
-                book_val : "required",
-                category : "required",
-                parent : "required",
-                location : "required",
-                condition : "required",
-                figure : {
-                    required: true
-                },
-            },
-            messages : {
-                no_asset : "number asset is required !",
-                no_equipment: "number equipment is required !",
-                description : "Description is required !",
-                mic : "MIC is required !",
-                book_val : "Book Value is required !",
-                category : "Category is required !",
-                parent : "Parent is required !",
-                location : "Location is required !",
-                condition : "Condition is required !",
-                figure : {
-                    required : "Figure is required !",
-                },
-                    
-            },
-            errorElement: 'span',
-            errorClass: 'help-block text-red',
-            submitHandler: function() {
-                fdata = new FormData($('form#formInput')[0]);
-                    $.ajax({
-                        type: "POST",
-                        url: "{{ route('post.invnty') }}",
-                        dataType: 'JSON',
-                        data: fdata,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        success: function(msg){
-                            var validator = {};
-                            if (msg == '0'){
-                                var $validator = $("#formInput").validate();
-                                var errors;
-
-                                /* Build up errors object, name of input and error message: */
-                                errors = { no_equipment: "Nomor equipment sudah terdaftar" };
-                                /* Show errors on the form */
-                                $validator.showErrors(errors);
-                            } else {
-                                $('#no_asset').val("");
-                                $('#no_equipment').val("");
-                                $('#description').val("");
-                                $('#mic').val("");
-                                $('#book_val').val("");
-                                $('#category').val("");
-                                $('#parent').val("");
-                                $('#location').val("");
-                                $('#figure').val("");
-                                alert('data has been saved');
-                                $('#pageTable').DataTable().draw();
-                            }
-                        },
-                        error: function(){
-                            alert("failure");
-                        }
-                    });
-                }
-            });
-        }
-
-        function updatetData(){
-            
-            $("#formInput").validate({
-            ignore: [],
-            debug:true,
-            rules : {
-                no_asset : "required",
-                no_equipment : "required",
-                description : "required",
-                mic : "required",
-                book_val : "required",
-                category : "required",
-                parent : "required",
-                location : "required",
-                condition : "required"
-            },
-            messages : {
-                no_asset : "number asset is required !",
-                no_equipment: "number equipment is required !",
-                description : "Description is required !",
-                mic : "MIC is required !",
-                book_val : "Book Value is required !",
-                category : "Category is required !",
-                parent : "Parent is required !",
-                location : "Location is required !",
-                condition : "Condition is required !",
-            },
-            errorElement: 'span',
-            errorClass: 'help-block text-red',
-            submitHandler: function() {
-                fdata = new FormData($('form#formInput')[0]);
-                    $.ajax({
-                        type: "POST",
-                        url: "{{ route('update.invnty') }}",
-                        dataType: 'JSON',
-                        data: fdata,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        success: function(msg){
-                            var validator = {};
-                            if (msg == '0'){
-                                var $validator = $("#formInput").validate();
-                                var errors;
-
-                                /* Build up errors object, name of input and error message: */
-                                errors = { no_asset: "Nomor asset sudah terdaftar" };
-                                /* Show errors on the form */
-                                $validator.showErrors(errors);
-                            } else {
-                                $('#no_asset').val("");
-                                $('#no_equipment').val("");
-                                $('#description').val("");
-                                $('#mic').val("");
-                                $('#book_val').val("");
-                                $('#category').val("");
-                                $('#parent').val("");
-                                $('#location').val("");
-                                $('#figure').val("");
-                                alert('data has been saved');
-                                $('#pageTable').DataTable().draw();
-                            }
-                        },
-                        error: function(){
-                            alert("failure");
-                        }
-                    });
-                }
-            });
-        }
 
         function drawChart() {
             $.ajax({
@@ -490,6 +351,16 @@
                 },
                 error   : function(response){}
             });
+        }
+
+        function filter(){
+            alert('tes');
+            $('#pageTable').DataTable()
+            .column( 2 )
+            .data()
+            .filter( function ( value, index ) {
+                return value == 'compresor' ? true : false;
+            } );
         }
     </script>
 @endsection

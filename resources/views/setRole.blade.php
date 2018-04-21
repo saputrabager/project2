@@ -65,7 +65,7 @@
                   </div>
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button id="UpdateUser" type="submit" onclick="updateData()" class="btn btn-default">Update</button>
+                        <button id="UpdateUser" type="submit" onclick="updateDataRole()" class="btn btn-default">Update</button>
                         <button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                   </div>
@@ -114,52 +114,5 @@
                 ],
             }).ajax.reload();
 	});
-
-	function updateData(){
-            
-            $("#formInput").validate({
-            ignore: [],
-            debug:true,
-            rules : {
-                name : "required",
-            },
-            messages : {
-                name : "number asset is required !",                    
-            },
-            errorElement: 'span',
-            errorClass: 'help-block text-red',
-            submitHandler: function() {
-                fdata = new FormData($('form#formInput')[0]);
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('setRole') }}",
-                    dataType: 'JSON',
-                    data: fdata,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function(msg){
-                        var validator = {};
-                        if (msg == '0'){
-                            var $validator = $("#formInput").validate();
-                            var errors;
-
-                            /* Build up errors object, name of input and error message: */
-                            // errors = { no_asset: "Nomor asset sudah terdaftar" };
-                            //  Show errors on the form 
-                            // $validator.showErrors(errors);
-                        } else {
-                            // $('#loc_name').val("");
-                            alert('data has been saved');
-                            $('#tableLoc').DataTable().draw();
-                        }
-                    },
-                    error: function(){
-                        alert("failure");
-                    }
-                });
-            }
-        });
-    }
 </script>
 @endsection

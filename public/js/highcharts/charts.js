@@ -46,13 +46,13 @@ function chart(data){
 	    },
 	    series: [{
 	        type: 'pie',
-	        name: 'Browser share',
+	        name: 'Asset condition',
 	        innerSize: '50%',
 	        data: [
 	            ['Ready', readyPercentage],
 	            ['Not Ready', notReadyPercentage],
 	            ['Idle', idePercentage],
-	            ['Under Mtc', underMtc],
+	            ['Under Mtc', underMtcPercentage],
 	            ['On Job', onJobPercentage]
 	        ]
 	    }]
