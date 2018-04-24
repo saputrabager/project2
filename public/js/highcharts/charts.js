@@ -1,11 +1,11 @@
 function chart(data){
 
 	
-	ready = fillterArray(data, "1");
-	notReady = fillterArray(data, "2");
-	underMtc = fillterArray(data, "3");
-	idle = fillterArray(data, "4");
-	onJob = fillterArray(data, "5");
+	ready = fillterArray(data, "Ready");
+	notReady = fillterArray(data, "Not Ready");
+	underMtc = fillterArray(data, "Under Mtc");
+	idle = fillterArray(data, "Idle");
+	onJob = fillterArray(data, "On Job");
 	total = data.length;
 
 	idePercentage = idle / total * 100;
@@ -32,7 +32,7 @@ function chart(data){
 	    plotOptions: {
 	        pie: {
 	            dataLabels: {
-	                enabled: true,
+	                enabled: false,
 	                distance: -50,
 	                style: {
 	                    fontWeight: 'bold',
@@ -41,7 +41,8 @@ function chart(data){
 	            },
 	            startAngle: -180,
 	            endAngle: 180,
-	            center: ['50%', '50%']
+	            center: ['50%', '50%'],
+	            showInLegend: true
 	        }
 	    },
 	    series: [{
@@ -55,6 +56,22 @@ function chart(data){
 	            ['Under Mtc', underMtcPercentage],
 	            ['On Job', onJobPercentage]
 	        ]
+	        // data: [{
+	        //     name: 'Ready',
+	        //     y: 61.41
+	        // }, {
+	        //     name: 'Not Ready',
+	        //     y: 11.84
+	        // }, {
+	        //     name: 'Idle',
+	        //     y: 10.85
+	        // }, {
+	        //     name: 'Under Mtc',
+	        //     y: 4.67
+	        // }, {
+	        //     name: 'On Job',
+	        //     y: 4.18
+	        // }]
 	    }]
 	});
 }

@@ -10,7 +10,8 @@
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li class="active">Dashboard</li>
-                    <a class="pull-right button" style="margin-top: -4px" data-toggle="modal" data-target="#myModal">Add New Data</a>
+                    <a class="pull-right button" style="margin-top: -4px;margin-left:4px" data-toggle="modal" data-target="#myModal">Add New Data</a>
+                    <a href="{{route('export.inventory')}}" class="pull-right button" style="margin-top: -4px" >Export to Excel</a>
                 </ol>
             </div>
         </section>
@@ -37,33 +38,11 @@
 
                         <tbody id="dt-table"></tbody>
                     </table>
-
-                    <!-- <table class="table table-bordered" id="users-table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Created At</th>
-                <th>Updated At</th>
-            </tr>
-        </thead>
-    </table> -->
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
-                    <div class="buble">
-                        CATEGORY (hierarchy)
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="buble">
-                        <div class="buble-header">LOCATION</div>
-                        <div class="buble-body"></div>
-                    </div>
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
+                    <span class="center" style="text-align: center;">Grafik kondisi barang</span>
                     <div id="chart" style="margin: 0 auto"></div>
                 </div>
             </div>
@@ -138,11 +117,11 @@
                     <label class="col-sm-2 control-label" for="condition" >Condition</label>
                     <div class="col-sm-10">
                         <select type="text" class="form-control" id="condition" name="condition">
-                            <option value="1">Ready</option>
-                            <option value="2">Not Ready</option>
-                            <option value="3">Under Mtc</option>
-                            <option value="4">Idle</option>
-                            <option value="5">On Job</option>
+                            <option value="Ready">Ready</option>
+                            <option value="Not Ready">Not Ready</option>
+                            <option value="Under Mtc">Under Mtc</option>
+                            <option value="Idle">Idle</option>
+                            <option value="On Job">On Job</option>
                         </select>
                     </div>
                   </div>
@@ -156,6 +135,56 @@
                     <div class="col-sm-offset-2 col-sm-10">
                         <button id="updateInvent" type="submit" onclick="updatetDataAsset()" class="btn btn-default" style="display: none;">Update</button>
                         <button id="storeInvent" type="submit" onclick="insertDataAsset()" class="btn btn-default">Save</button>
+                        <button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- <div class="modal-footer">
+                <button id="storeInvent" type="submit" onclick="insertData()" class="btn btn-default">Save</button>
+                <button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
+              </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="exModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Input Filter</h4>
+              </div>
+              <div class="modal-body">
+                <form id="formExcel"  method="POST" class="form-horizontal" role="form">
+                    {{csrf_field()}}
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="location" >Location</label>
+                    <div class="col-sm-10">
+                        <select type="text" class="form-control js-example-basic-single" id="location" name="location" placeholder="select Location">
+                            <option></option>
+                            <option value="all">All</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="condition" >Condition</label>
+                    <div class="col-sm-10">
+                        <select type="text" class="form-control" id="condition" name="condition">
+                            <option value="all">All</option>
+                            <option value="1">Ready</option>
+                            <option value="2">Not Ready</option>
+                            <option value="3">Under Mtc</option>
+                            <option value="4">Idle</option>
+                            <option value="5">On Job</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button id="storeInvent" type="submit" onclick="getExcel()" class="btn btn-default">Download</button>
                         <button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                   </div>
@@ -200,37 +229,37 @@
             $('.js-example-basic-single').select2();
             $('.select2').attr('width','450px');
 
-            editor = new $.fn.dataTable.Editor( {
-                ajax: "../php/staff.php",
-                table: "#pageTable",
-                idSrc:  'NO_ASSET',
-                fields: [ {
-                        label: "NOMOR ASSET:",
-                        name: "NO_ASSET"
-                    }, {
-                        label: "DESCRIPTION:",
-                        name: "DESCRIPTION"
-                    }, {
-                        label: "MIC:",
-                        name: "MIC"
-                    }, {
-                        label: "BOOK VALUE:",
-                        name: "BOOK_VALUE"
-                    }, {
-                        label: "CATEGORY:",
-                        name: "CATEGORY"
-                    }, {
-                        label: "PARENT:",
-                        name: "PARENT",
-                    }, {
-                        label: "LOCATION:",
-                        name: "LOCATION"
-                    }, {
-                        label: "CONDITIONS:",
-                        name: "CONDITIONS"
-                    }
-                ]
-            } );
+            // editor = new $.fn.dataTable.Editor( {
+            //     ajax: "../php/staff.php",
+            //     table: "#pageTable",
+            //     idSrc:  'NO_ASSET',
+            //     fields: [ {
+            //             label: "NOMOR ASSET:",
+            //             name: "NO_ASSET"
+            //         }, {
+            //             label: "DESCRIPTION:",
+            //             name: "DESCRIPTION"
+            //         }, {
+            //             label: "MIC:",
+            //             name: "MIC"
+            //         }, {
+            //             label: "BOOK VALUE:",
+            //             name: "BOOK_VALUE"
+            //         }, {
+            //             label: "CATEGORY:",
+            //             name: "CATEGORY"
+            //         }, {
+            //             label: "PARENT:",
+            //             name: "PARENT",
+            //         }, {
+            //             label: "LOCATION:",
+            //             name: "LOCATION"
+            //         }, {
+            //             label: "CONDITIONS:",
+            //             name: "CONDITIONS"
+            //         }
+            //     ]
+            // } );
 
             // Activate an inline edit on click of a table cell
             // $('#pageTable').on( 'click', 'tbody td:not(:first-child)', function (e) {
@@ -261,31 +290,7 @@
                     { data: 'CATEGORY', name: 'CATEGORY' },
                     { data: 'PARENT', name: 'PARENT' },
                     { data: 'LOCATION', name: 'LOCATION' },
-                    {
-                        searchable: false,
-                        orderable: false,
-                        "render": function (data, type, row, meta) {
-                            switch (row.CONDITIONS){
-                                case '1':
-                                    condition = 'Ready';
-                                    break;
-                                case '2':
-                                    condition = 'Not Ready';
-                                    break;
-                                case '3':
-                                    condition = 'Under Mtc';
-                                    break;
-                                case '4':
-                                    condition = 'Idle';
-                                    break;
-                                default:
-                                    condition = 'On Job';
-                                    break;
-                            }
-
-                            return condition;
-                        },
-                    },
+                    { data: 'CONDITIONS', name: 'CONDITIONS' },
                     {
                         searchable: false,
                         orderable: false,
@@ -335,7 +340,6 @@
             drawChart();
         });
 
-        window.BASE_URL = "{{URL::to('/')}}";
         $.ajaxSetup({
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
         });

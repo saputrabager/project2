@@ -85,7 +85,7 @@
                 <img src="{{asset ('images/BGR.jpg')}}" style="width: 100%">
                     <div class="center">
                         <div class="title m-b-md">
-                            INVENTORY
+                            ASSET ONLINE
                         </div>
                         @if (Route::has('login'))
                             <div class="links">

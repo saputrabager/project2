@@ -5,7 +5,7 @@
                 <img src="{{asset('images/user.png')}}" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-                <p>Inventory</p>
+                <p>{{Auth::user()->name}}</p>
             </div>
         </div>
         <ul class="sidebar-menu" data-widget="tree">

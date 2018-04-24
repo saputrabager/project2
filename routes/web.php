@@ -25,6 +25,8 @@ Route::post('/post-update-inventory', 'inventoryController@update')->name('updat
 
 Route::get('/delet-inventory/{id}','inventoryController@delet')->name('delet.inventory');
 
+Route::get('/export-inventory','inventoryController@excel')->name('export.inventory');
+
 Route::get('/home/{id}', 'inventoryController@afterD')->name('home.mesage');
 
 Route::get('/get-data-table', 'HomeController@dataTable')->name('data.table');

@@ -423,3 +423,72 @@ function insertDataAsset(){
             }
         });
     }
+
+    function getExcel(){
+            
+            $("#formExcel").validate({
+            ignore: [],
+            debug:true,
+            rules : {
+                location : "required",
+                condition : "required"
+            },
+            messages : {
+                location : "Location is required !",
+                condition : "Condition is required !",
+            },
+            errorElement: 'span',
+            errorClass: 'help-block text-red',
+            submitHandler: function() {
+                fdata = new FormData($('form#formExcel')[0]);
+                    $.ajax({
+                        type: "POST",
+                        url: BASE_URL + "/export-inventory",
+                        dataType: 'JSON',
+                        data: fdata,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function(msg){
+                            $('#exModal').toggle();
+                            // var validator = {};
+                            // if (msg == '0'){
+                            //     var $validator = $("#formInput").validate();
+                            //     var errors;
+
+                            //     /* Build up errors object, name of input and error message: */
+                            //     errors = { no_equipment: "Nomor equipment sudah terdaftar" };
+                            //     /* Show errors on the form */
+                            //     $validator.showErrors(errors);
+                            // } else {
+                            //     swal({
+                            //           title: "Success!",
+                            //           text: "Your data have ben save!",
+                            //           icon: "success",
+                            //           button: "OK!",
+                            //         });
+                            //     $('#no_asset').val("");
+                            //     $('#no_equipment').val("");
+                            //     $('#description').val("");
+                            //     $('#mic').val("");
+                            //     $('#book_val').val("");
+                            //     $('#category').val("");
+                            //     $('#parent').val("");
+                            //     $('#location').val("");
+                            //     $('#figure').val("");
+                            //     $('#pageTable').DataTable().draw();
+                            //     drawChart();
+                            // }
+                        },
+                        error: function(){
+                            swal({
+                              title: "Error!",
+                              text: "Operation failed",
+                              icon: "error",
+                              button: "OK!",
+                            });
+                        }
+                    });
+                }
+            });
+        }

@@ -44,7 +44,7 @@
     <script type="text/javascript" src="{{asset('vendor/DataTables/select/1.2.5/js/dataTables.select.min.js')}}"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.1/js/responsive.bootstrap.min.js"></script>
-    <script src="{{ asset('plugins/editor/js/dataTables.editor.min.js') }}"></script>
+    <!-- <script src="{{ asset('plugins/editor/js/dataTables.editor.min.js') }}"></script> -->
     <!-- validate.js -->
     <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
     <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
@@ -61,6 +61,7 @@
     <script src="{{ asset('js/event.js') }}"></script>
     <script type="text/javascript">
         role = '{{Auth::user()->role}}';
+        BASE_URL = "{{URL::to('/')}}";
     </script>
     
     @yield('scripts')

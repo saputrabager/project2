@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Exports\InvoicesExport;
 use App\inventory;
+Use Excel;
+// require 'vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class inventoryController extends Controller
 {
@@ -112,8 +118,9 @@ class inventoryController extends Controller
         
     }
 
-    public function afterD($id){
+    public function excel(){
 
-         return view('dashboard' , compact('id'));
+        $name = 'Asset report - '. date('d-m-y') .'.xlsx';
+        return (new InvoicesExport)->download($name);
     }
 }
