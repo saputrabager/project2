@@ -64,38 +64,48 @@ class inventoryController extends Controller
     {
         $inventory = new inventory;
         $input = request()->all();
+            if (isset($input['figure'])){
+                $image = $request->file('figure');
+                $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+                $destinationPath = public_path('/images');
+                $image->move($destinationPath, $input['imagename']);
 
-        request()->validate([
+                // $this->postImage->add($input);
+                $no_asset = $inventory::where('no_asset', $input['no_asset'])
+                ->update([
+                    'NO_EQUIPMENT' => $input['no_equipment'],
+                    'NO_ASSET' => $input['no_asset'],
+                    'DESCRIPTION' => $input['description'],
+                    'MIC' => $input['mic'],
+                    'BOOK_VALUE' => $input['book_val'],
+                    'CATEGORY' => $input['category'],
+                    'PARENT' => $input['parent'],
+                    'LOCATION' => $input['location'],
+                    'CONDITIONS' => $input['condition'],
+                    'FIGURE' => $input['imagename']
+                ]);
+                
+                $validate = 1;
+                return $validate;
+            } else {
+                $no_asset = $inventory::where('no_asset', $input['no_asset'])
+                ->update([
+                    'NO_EQUIPMENT' => $input['no_equipment'],
+                    'NO_ASSET' => $input['no_asset'],
+                    'DESCRIPTION' => $input['description'],
+                    'MIC' => $input['mic'],
+                    'BOOK_VALUE' => $input['book_val'],
+                    'CATEGORY' => $input['category'],
+                    'PARENT' => $input['parent'],
+                    'LOCATION' => $input['location'],
+                    'CONDITIONS' => $input['condition'],
+                ]);
+                
+                $validate = 1;
+                return $validate;
+            }
 
-            'figure' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:500',
-
-        ]);
-
-        
-        
-
-            $image = $request->file('figure');
-            $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/images');
-            $image->move($destinationPath, $input['imagename']);
-
-            // $this->postImage->add($input);
-            $no_asset = $inventory::where('no_asset', $input['no_asset'])
-            ->update([
-                'NO_EQUIPMENT' => $input['no_equipment'],
-                'NO_ASSET' => $input['no_asset'],
-                'DESCRIPTION' => $input['description'],
-                'MIC' => $input['mic'],
-                'BOOK_VALUE' => $input['book_val'],
-                'CATEGORY' => $input['category'],
-                'PARENT' => $input['parent'],
-                'LOCATION' => $input['location'],
-                'CONDITIONS' => $input['condition'],
-                'FIGURE' => $input['imagename']
-            ]);
             
-            $validate = 1;
-            return $validate;
 
     }
 

@@ -22,7 +22,6 @@ $('#pageTable tbody').on( 'click', '#edit', function () {
     $('#myModal').modal('toggle');
     $('#updateInvent').show();
     $('#storeInvent').hide();
-    console.log( data );
 } );
 
 $('#tableLoc tbody').on( 'click', '#edit', function () {
@@ -32,7 +31,6 @@ $('#tableLoc tbody').on( 'click', '#edit', function () {
     $('#locModal').modal('toggle');
     $('#updateLoc').show();
     $('#storeLoc').hide();
-    console.log( data );
 } );
 
 $('#userTable tbody').on( 'click', '#edit', function () {
@@ -40,7 +38,6 @@ $('#userTable tbody').on( 'click', '#edit', function () {
     $('#name').val(data['name']);
     $('#role-level').val(data['role']).trigger('change');
     $('#myModal').modal('toggle');
-    console.log( data );
 } );
 
 function delet(id) {
