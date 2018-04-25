@@ -30,8 +30,8 @@ class inventoryController extends Controller
 
         ]);
 
-    	$no_asset = inventory::where('no_equipment', $input['no_equipment'])->count();
-    	if ($no_asset==1){
+    	$no_asset = inventory::where('NO_EQUIPMENT', $input['no_equipment'])->count();
+    	if ($no_asset > 0){
     		$validate = '0';
     		return $validate;
     	} else { 
@@ -129,8 +129,68 @@ class inventoryController extends Controller
     }
 
     public function excel(){
-
+        $inventory = new inventory;
         $name = 'Asset report - '. date('d-m-y') .'.xlsx';
-        return (new InvoicesExport)->download($name);
+
+        $data =  inventory::select('no_equipment','no_asset','description','mic','book_value','category','parent','location','conditions','figure');
+        // return (new InvoicesExport)->download($name);
+        Excel::create($name, function($excel) use ($data){
+
+    // Our first sheet
+    // $excel->sheet('First sheet', function($sheet) {
+    //     $sheet->fromArrat($data);
+    //     });
+
+    // })->export('xls');
+        $excel->setTitle('Asset Report');
+         $excel->sheet('Sheet1', function($sheet) {
+                $employees = inventory::all();
+                $row = count($employees);
+                // $employees = inventory::select('no_equipment','no_asset','description','mic','book_value','category','parent','location','conditions','figure')->make();
+
+                // $arr =array();
+                // foreach($employees as $employee) {
+                //     print_r($employee);exit;
+                //     // foreach($employee->sims as $sim){
+                //     //     $data =  array($employee->id, $employee->name, $employee->nic, $employee->address, $employee->title,
+                //     //         $sim->id, $sim->msisdn, $sim->imei, $sim->issued_to);
+                //     //     array_push($arr, $data);
+                //     // }
+                // }
+
+                //set the title
+
+                // $sheet->cells('A1:L1', function ($cells) {
+                //     $cells->setBackground('#67af09');
+                //     $cells->setAlignment('center');
+                // });
+                
+
+                $sheet->cells('A1:l1', function($cells) {
+                    // $cells->setBackground('#67af09');
+                });
+
+                $sheet->setBorder('A1:L'.$row, 'thin');
+               
+                $sheet->fromArray($employees,null,'A1',false,false)->prependRow(array(
+                    'No Equipment',
+                    'No Asset',
+                    'Description',
+                    'MIC',
+                    'Book Value',
+                    'Category',
+                    'Parent',
+                    'Location',
+                    'Condition',
+                    'Figure',
+                    'Create',
+                    'update'
+                    )
+
+                );
+
+            });
+
+        })->export('xls');
     }
 }
