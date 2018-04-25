@@ -162,3 +162,7 @@ tr:nth-child(even) {
 .error{
     color: red;
 }
+
+.user-header p {
+    color: blue !important
+}

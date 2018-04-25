@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{asset('vendor/font-awesome-4.7.0/css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/skins/skin-blue-light.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/skins/_all-skins.min.css')}}" />
     <link rel="stylesheet" href="{{asset('vendor/font-awesome/css/font-awesome.min.css')}}" />
     <link rel="stylesheet" href="{{asset('vendor/DataTables/datatables.min.css')}}"/>
     <!-- select2 -->
