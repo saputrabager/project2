@@ -96,7 +96,11 @@
                   <div class="form-group">
                     <label class="col-sm-2 control-label" for="category" >Category</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="category" name="category" placeholder="Category"/>
+                        <select class="form-control" id="category" name="category" >
+                            <option value="Unit">Unit</option>
+                            <option value="Main Equipment">Main Equipment</option>
+                            <option value="Accessories">Accessories</option>
+                        </select>
                     </div>
                   </div>
                   <div class="form-group">
