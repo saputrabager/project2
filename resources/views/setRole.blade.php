@@ -51,6 +51,7 @@
                     	<label class="col-sm-2 control-label" for="name" >Name</label>
 	                    <div class="col-sm-10">
 	                        <input type="text" class="form-control" id="name" name="name" placeholder="Name"/>
+                            <input type="hidden" class="form-control" id="id" name="id" placeholder="id"/>
 	                    </div>
 	                </div>
                   	<div class="form-group">

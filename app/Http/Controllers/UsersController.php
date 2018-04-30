@@ -102,9 +102,9 @@ class UsersController extends Controller
 
         ]);
 
-        $user = location::find($input['id']);
+        $user = User::find($input['id']);
 
-        $user->role = $input['role'];
+        $user->role = $input['role-level'];
 
         $user->save();
         

@@ -160,10 +160,10 @@ class inventoryController extends Controller
 
                 //set the title
 
-                // $sheet->cells('A1:L1', function ($cells) {
-                //     $cells->setBackground('#67af09');
+                $sheet->cells('A1:L1', function ($cells) {
+                    $cells->setBackground('#67af09');
                 //     $cells->setAlignment('center');
-                // });
+                });
                 
 
                 $sheet->cells('A1:l1', function($cells) {

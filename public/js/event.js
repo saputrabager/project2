@@ -36,6 +36,7 @@ $('#tableLoc tbody').on( 'click', '#edit', function () {
 $('#userTable tbody').on( 'click', '#edit', function () {
     var data = $('#userTable').DataTable().row( $(this).parents('tr') ).data();
     $('#name').val(data['name']);
+    $('#id').val(data['user_id']);
     $('#role-level').val(data['role']).trigger('change');
     $('#myModal').modal('toggle');
 } );
@@ -405,7 +406,8 @@ function insertDataAsset(){
                                   icon: "success",
                                   button: "OK!",
                                 });
-                            $('#tableLoc').DataTable().draw();
+                            $('#userTable').DataTable().draw();
+                            
                         }
                     },
                     error: function(){
