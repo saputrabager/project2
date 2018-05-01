@@ -106,7 +106,9 @@
                   <div class="form-group">
                     <label class="col-sm-2 control-label" for="parent" >Parent</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="parent" name="parent" placeholder="Parent"/>
+                        <select type="text" class="form-control js-example-basic-single" id="parent" name="parent" placeholder="select Parent">
+                            <option></option>
+                        </select>
                     </div>
                   </div>
                   <div class="form-group">
@@ -225,6 +227,21 @@
                 success: function(msg){
                     $.each(msg, function(key, val) {
                         $('#location').append("<option value='"+val.LOC_NAME+"'>"+val.LOC_NAME+"</option>");
+                    })
+                },
+                error: function(msg){}
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "{{ route('ortu.name') }}",
+                dataType: 'JSON',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(msg){
+                    $.each(msg, function(key, val) {
+                        $('#parent').append("<option value='"+val.ORTU+"'>"+val.ORTU+"</option>");
                     })
                 },
                 error: function(msg){}

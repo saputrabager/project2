@@ -29,6 +29,7 @@ Route::get('/export-inventory','inventoryController@excel')->name('export.invent
 
 Route::get('/home/{id}', 'inventoryController@afterD')->name('home.mesage');
 
+
 Route::get('/get-data-table', 'HomeController@dataTable')->name('data.table');
 
 Route::get('/data-table', 'DatatablesController@anyData')->name('table');
@@ -36,6 +37,9 @@ Route::get('/data-table', 'DatatablesController@anyData')->name('table');
 Route::get('/data-table-loc', 'DatatablesController@anyLocation')->name('tableLocation');
 
 Route::get('/data-table-user', 'DatatablesController@anyUser')->name('tableUser');
+
+Route::get('/data-table-ortu', 'DatatablesController@anyOrtu')->name('tableOrtu');
+
 
 Route::get('/get-location', 'LocationController@index')->name('get.location');
 
@@ -46,6 +50,19 @@ Route::post('/update-location', 'LocationController@update')->name('update.locat
 Route::get('/delet-location/{id}','LocationController@delet')->name('delet.location');
 
 Route::get('/get-location-name', 'LocationController@getName')->name('location.name');
+
+
+
+Route::get('/get-ortu', 'OrtuController@index')->name('get.ortu');
+
+Route::post('/post-ortu', 'OrtuController@store')->name('post.ortu');
+
+Route::post('/update-ortu', 'OrtuController@update')->name('update.ortu');
+
+Route::get('/delet-ortu/{id}','OrtuController@delet')->name('delet.ortu');
+
+Route::get('/get-ortu-name', 'OrtuController@getName')->name('ortu.name');
+
 
 Route::get('/get-role', 'UsersController@getRole')->name('role');
 

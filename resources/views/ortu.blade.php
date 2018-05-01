@@ -6,11 +6,11 @@
             <div class="row">
                 <h1>
                     Dashboard
-                    <small>Location</small>
+                    <small>Parent</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Location</li>
+                    <li class="active">Parent</li>
                     <a class="pull-right button" style="margin-top: -4px" data-toggle="modal" data-target="#locModal">Add New Data</a>
                 </ol>
             </div>
@@ -19,16 +19,16 @@
         <section class="content">
             <div class="row" style="margin-bottom: 15px">
                 <div class="col-md-12">
-                    <table id="tableLoc" class="table table-bordered table-hover stripe">
+                    <table id="tableOrtu" class="table table-bordered table-hover stripe">
                         <thead>
                             <tr>
                                 <th>NO</th>
-                                <th class="loc">LOCATION</th>
+                                <th class="loc">PARENT</th>
                                 <th>ACTION</th>
                             </tr>
                         </thead>
 
-                        <tbody id="dtLoc"></tbody>
+                        <tbody id="dtOrtu"></tbody>
                     </table>
                 </div>
             </div>
@@ -44,19 +44,19 @@
                 <h4 class="modal-title">Input Data</h4>
               </div>
               <div class="modal-body">
-                <form id="fLocation"  method="POST" class="form-horizontal" role="form">
+                <form id="fOrtu"  method="POST" class="form-horizontal" role="form">
                     {{csrf_field()}}
                   <div class="form-group">
-                    <label  class="col-sm-2 control-label" for="loc_name">Location Name</label>
+                    <label  class="col-sm-2 control-label" for="ortu">Parent Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="loc_name" name="loc_name" placeholder="Location Name"/>
+                        <input type="text" class="form-control" id="ortu" name="ortu" placeholder="Parent Name"/>
                     </div>
                   </div>
                   <div class="form-group">
-                    <input type="hidden" class="form-control" id="id" name="id" placeholder="Location Name"/>
+                    <input type="hidden" class="form-control" id="id" name="id" placeholder="Parent Name"/>
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button id="updateLoc" type="submit" onclick="updateDataLoc()" class="btn btn-default" style="display: none;">Update</button>
-                        <button id="storeLoc" type="submit" onclick="insertDataLoc()" class="btn btn-default">Save</button>
+                        <button id="updateOrtu" type="submit" onclick="updateDataOrtu()" class="btn btn-default" style="display: none;">Update</button>
+                        <button id="storeOrtu" type="submit" onclick="insertDataOrtu()" class="btn btn-default">Save</button>
                         <button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                   </div>
@@ -70,10 +70,10 @@
 @section('scripts')
 <script type="text/javascript">
 	jQuery(function($){
-		$('#tableLoc').DataTable({
+		$('#tableOrtu').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('tableLocation') !!}',
+                ajax: '{!! route('tableOrtu') !!}',
                 buttons: [
                     'copy', 'excel', 'pdf'
                 ],
@@ -85,7 +85,7 @@
                             return meta.settings._iDisplayStart + meta.row + 1;
                         },
                     },
-                    { data: 'LOC_NAME', name: 'LOC_NAME' },
+                    { data: 'ORTU', name: 'ORTU' },
                     {
                         searchable: false,
                         orderable: false,
@@ -93,7 +93,7 @@
                             var edit = "<a class='pull-left button' style='margin-right: 4px' id='edit'><i class='fa fa-edit'  title='edit'></i></a>";
                             var dlt = '';
                             if (role == 'super-admin'){
-                                var dlt = "<a onclick='deletLoc(" + row.ID + ")' class='pull-left button-red' style='margin-right: 4px' id='dlt'><i class='fa fa-trash'  title='delete'></i></a>";
+                                var dlt = "<a onclick='deletOrtu(" + row.ID + ")' class='pull-left button-red' style='margin-right: 4px' id='dlt'><i class='fa fa-trash'  title='delete'></i></a>";
                             }
                             return edit+dlt;
                         },
@@ -104,7 +104,7 @@
                 ]
             });
 
-		// $('#tableLoc').Tabledit({
+		// $('#tableOrtu').Tabledit({
 		//     url: 'example.php',
 		//     columns: {
 		//         identifier: [0, 'id'],

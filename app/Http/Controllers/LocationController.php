@@ -71,7 +71,8 @@ class LocationController extends Controller
     public function delet($id){
 
         location::destroy($id);
-        return redirect()->route('get.location');
+        $response = 1;
+        return $response;
         
     }
 }
