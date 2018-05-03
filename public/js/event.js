@@ -17,7 +17,7 @@ $('#pageTable tbody').on( 'click', '#edit', function () {
     $('#mic').val(data['MIC']);
     $('#book_val').val(data['BOOK_VALUE']);
     $('#category').val(data['CATEGORY']);
-    $('#parent').val(data['PARENT']);
+    $('#parent').val(data['PARENT']).trigger('change');
     $('#location').val(data['LOCATION']).trigger('change');
     $('#myModal').modal('toggle');
     $('#updateInvent').show();
@@ -49,6 +49,26 @@ $('#userTable tbody').on( 'click', '#edit', function () {
     $('#role-level').val(data['role']).trigger('change');
     $('#myModal').modal('toggle');
 } );
+
+$("select").select2({
+            placeholder: function () {
+                $(this).data('placeholder');
+            },
+            width:'100%'
+        });
+
+function insertData(){
+    $('#no_asset').val("");
+    $('#no_equipment').val("");
+    $('#description').val("");
+    $('#mic').val("");
+    $('#book_val').val("");
+    $('#category').val("");
+    $('#parent').val("");
+    $('#location').val("");
+    $('#figure').val("");
+    $('#myModal').modal('toggle');
+}
 
 function delet(id) {
     swal({
@@ -687,3 +707,39 @@ function insertDataAsset(){
                 }
             });
         }
+
+        function deletUser(id) {
+        swal({
+              title: "Are you sure?",
+              text: "Once deleted, you will not be able to recover!",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                var url = BASE_URL + "/delet-role/" + id; 
+                                $.ajax({
+                                    url      : url,
+                                    dataType : "JSON",
+                                    method   : "GET",
+                                    success  : function(response) {
+                                        // alert('yo');
+                                        if (response == '1') {
+                                            swal({
+                                                  title: "Good job!",
+                                                  text: "You have delete the data!",
+                                                  icon: "success",
+                                                  button: "Aww yiss!",
+                                                });
+                                            $('#userTable').DataTable().draw();
+                                        } 
+                                    },
+                                    error : function(response) {
+                                    }
+                                });
+              } else {
+                swal("Your imaginary file is safe!");
+              }
+            });
+    }

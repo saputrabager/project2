@@ -13,50 +13,75 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class inventoryController extends Controller
 {
-	public function __construct()
+    public function __construct()
 
-	{
-	    $this->middleware('auth');
-	}
+    {
+        $this->middleware('auth');
+    }
 
     public function store(Request $request)
     {
-    	$inventory = new inventory;
-    	$input = request()->all();
+        $inventory = new inventory;
+        $input = request()->all();
+        
+        if (isset($input['figure'])){
 
-    	request()->validate([
-
-            'figure' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:500',
-
-        ]);
-
-    	$no_asset = inventory::where('NO_EQUIPMENT', $input['no_equipment'])->count();
-    	if ($no_asset > 0){
-    		$validate = '0';
-    		return $validate;
-    	} else { 
-
-    		$image = $request->file('figure');
-		    $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
-		    $destinationPath = public_path('/images');
-		    $image->move($destinationPath, $input['imagename']);
-
-		    // $this->postImage->add($input);
-
-    		$inventory->NO_ASSET = $input['no_asset'];
-            $inventory->NO_EQUIPMENT = $input['no_equipment'];
-    		$inventory->DESCRIPTION = $input['description'];
-    		$inventory->MIC = $input['mic'];
-    		$inventory->BOOK_VALUE = $input['book_val'];
-    		$inventory->CATEGORY = $input['category'];
-    		$inventory->PARENT = $input['parent'];
-    		$inventory->LOCATION = $input['location'];
-    		$inventory->CONDITIONS = $input['condition'];
-    		$inventory->FIGURE = $input['imagename'];
-    		$inventory->save();
-    		$validate = 1;
-    		return $validate;
-    	}
+            request()->validate([
+    
+                'figure' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:500',
+    
+            ]);
+    
+            $no_asset = inventory::where('NO_EQUIPMENT', $input['no_equipment'])->count();
+            if ($no_asset > 0){
+                $validate = '0';
+                return $validate;
+            } else { 
+    
+                $image = $request->file('figure');
+                $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+                $destinationPath = public_path('/images');
+                $image->move($destinationPath, $input['imagename']);
+    
+                // $this->postImage->add($input);
+    
+                $inventory->NO_ASSET = $input['no_asset'];
+                $inventory->NO_EQUIPMENT = $input['no_equipment'];
+                $inventory->DESCRIPTION = $input['description'];
+                $inventory->MIC = $input['mic'];
+                $inventory->BOOK_VALUE = $input['book_val'];
+                $inventory->CATEGORY = $input['category'];
+                $inventory->PARENT = $input['parent'];
+                $inventory->LOCATION = $input['location'];
+                $inventory->CONDITIONS = $input['condition'];
+                $inventory->FIGURE = $input['imagename'];
+                $inventory->save();
+                $validate = 1;
+                return $validate;
+            }
+        } else {
+            $no_asset = inventory::where('NO_EQUIPMENT', $input['no_equipment'])->count();
+            if ($no_asset > 0){
+                $validate = '0';
+                return $validate;
+            } else {
+    
+                // $this->postImage->add($input);
+    
+                $inventory->NO_ASSET = $input['no_asset'];
+                $inventory->NO_EQUIPMENT = $input['no_equipment'];
+                $inventory->DESCRIPTION = $input['description'];
+                $inventory->MIC = $input['mic'];
+                $inventory->BOOK_VALUE = $input['book_val'];
+                $inventory->CATEGORY = $input['category'];
+                $inventory->PARENT = $input['parent'];
+                $inventory->LOCATION = $input['location'];
+                $inventory->CONDITIONS = $input['condition'];
+                $inventory->save();
+                $validate = 1;
+                return $validate;
+            }
+        }
 
     }
 
@@ -64,6 +89,7 @@ class inventoryController extends Controller
     {
         $inventory = new inventory;
         $input = request()->all();
+        
             if (isset($input['figure'])){
                 $image = $request->file('figure');
                 $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
@@ -104,25 +130,24 @@ class inventoryController extends Controller
                 $validate = 1;
                 return $validate;
             }
-
+        
             
 
     }
 
     public function getInventoryById($asset){
-    	$inventory = new inventory;
+        $inventory = new inventory;
 
-    	$requestedAsset  = $asset;
-    	$no_asset = inventory::where('no_equipment', $asset)->first();
+        $requestedAsset  = $asset;
+        $no_asset = inventory::where('no_equipment', $asset)->first();
 
-    	return $no_asset;
-    	
+        return $no_asset;
+        
     }
 
     public function delet($id){
         $inventory = inventory::where('no_equipment', '=', $id)->delete();
 
-        // return redirect()->route('home')->with('delete', 'data deleted successfully.');;
         $validate = '1';
         return $validate;
         
@@ -133,38 +158,12 @@ class inventoryController extends Controller
         $name = 'Asset report - '. date('d-m-y') .'.xlsx';
 
         $data =  inventory::select('no_equipment','no_asset','description','mic','book_value','category','parent','location','conditions','figure');
-        // return (new InvoicesExport)->download($name);
         Excel::create($name, function($excel) use ($data){
 
-    // Our first sheet
-    // $excel->sheet('First sheet', function($sheet) {
-    //     $sheet->fromArrat($data);
-    //     });
-
-    // })->export('xls');
         $excel->setTitle('Asset Report');
          $excel->sheet('Sheet1', function($sheet) {
                 $employees = inventory::all();
                 $row = count($employees);
-                // $employees = inventory::select('no_equipment','no_asset','description','mic','book_value','category','parent','location','conditions','figure')->make();
-
-                // $arr =array();
-                // foreach($employees as $employee) {
-                //     print_r($employee);exit;
-                //     // foreach($employee->sims as $sim){
-                //     //     $data =  array($employee->id, $employee->name, $employee->nic, $employee->address, $employee->title,
-                //     //         $sim->id, $sim->msisdn, $sim->imei, $sim->issued_to);
-                //     //     array_push($arr, $data);
-                //     // }
-                // }
-
-                //set the title
-
-                $sheet->cells('A1:L1', function ($cells) {
-                    $cells->setBackground('#67af09');
-                //     $cells->setAlignment('center');
-                });
-                
 
                 $sheet->cells('A1:l1', function($cells) {
                     // $cells->setBackground('#67af09');
@@ -177,9 +176,9 @@ class inventoryController extends Controller
                     'No Asset',
                     'Description',
                     'MIC',
-                    'Book Value',
+                    'AQC. Value',
                     'Category',
-                    'Parent',
+                    'Room',
                     'Location',
                     'Condition',
                     'Figure',

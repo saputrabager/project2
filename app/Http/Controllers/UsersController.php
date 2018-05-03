@@ -78,9 +78,11 @@ class UsersController extends Controller
      * @param  \App\users  $users
      * @return \Illuminate\Http\Response
      */
-    public function destroy(users $users)
+    public function destroy($id)
     {
-        //
+        User::destroy($id);
+        $response = 1;
+        return $response;
     }
 
     public function getRole(){

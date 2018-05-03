@@ -10,7 +10,7 @@
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li class="active">Dashboard</li>
-                    <a class="pull-right button" style="margin-top: -4px;margin-left:4px" data-toggle="modal" data-target="#myModal">Add New Data</a>
+                    <a class="pull-right button" style="margin-top: -4px;margin-left:4px" onclick="insertData()">Add New Data</a>
                     <a href="{{route('export.inventory')}}" class="pull-right button" style="margin-top: -4px" >Export to Excel</a>
                 </ol>
             </div>
@@ -97,6 +97,7 @@
                     <label class="col-sm-2 control-label" for="category" >Category</label>
                     <div class="col-sm-10">
                         <select class="form-control" id="category" name="category" >
+                            <option></option>
                             <option value="Unit">Unit</option>
                             <option value="Main Equipment">Main Equipment</option>
                             <option value="Accessories">Accessories</option>
@@ -106,7 +107,7 @@
                   <div class="form-group">
                     <label class="col-sm-2 control-label" for="parent" >Parent</label>
                     <div class="col-sm-10">
-                        <select type="text" class="form-control js-example-basic-single" id="parent" name="parent" placeholder="select Parent">
+                        <select type="text" class="form-control select2" id="parent" name="parent" data-placeholder="select Parent">
                             <option></option>
                         </select>
                     </div>
@@ -114,7 +115,7 @@
                   <div class="form-group">
                     <label class="col-sm-2 control-label" for="location" >Location</label>
                     <div class="col-sm-10">
-                        <select type="text" class="form-control js-example-basic-single" id="location" name="location" placeholder="select Location">
+                        <select type="text" class="form-control select2" id="location" name="location" data-placeholder="select Location">
                             <option></option>
                         </select>
                     </div>
@@ -316,7 +317,11 @@
                         searchable: false,
                         orderable: false,
                         "render": function (data, type, row, meta) {
-                            var link = "<a href='{{ URL::to('/') }}/images/"+row.FIGURE+"' >"+row.FIGURE+"</a>";
+                            if (row.FIGURE!= null){
+                                var link = "<a href='{{ URL::to('/') }}/images/"+row.FIGURE+"' >"+row.FIGURE+"</a>";
+                            } else {
+                                var link = '-';
+                            }
 
                             return link;
                         },

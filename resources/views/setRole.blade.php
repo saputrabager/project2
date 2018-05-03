@@ -107,7 +107,7 @@
                             var edit = "<a class='pull-left button' style='margin-right: 4px' id='edit'><i class='fa fa-edit'  title='edit'></i></a>";
                             var dlt = '';
                             if (role == 'super-admin'){
-                                var dlt = "<a href='{{url('/delet-role/')}}/" + row.ID + "' class='pull-left button-red' style='margin-right: 4px' id='dlt'><i class='fa fa-trash'  title='delete'></i></a>";
+                                var dlt = "<a onclick='deletUser(" + row.user_id + ")' class='pull-left button-red' style='margin-right: 4px' id='dlt'><i class='fa fa-trash'  title='delete'></i></a>";
                             }
                             return edit+dlt;
                         },
