@@ -58,6 +58,7 @@
 	                    <label class="col-sm-2 control-label" for="role-level" >Role level</label>
 	                    <div class="col-sm-10">
                         <select type="text" class="form-control" id="role-level" name="role-level">
+                            <option value="guest">guest</option>
 							<option value="User">User</option>
 							<option value="Admin">Admin</option>
 							<option value="super-admin">super-admin</option>

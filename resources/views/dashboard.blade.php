@@ -10,7 +10,9 @@
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li class="active">Dashboard</li>
+                    @if (\Auth::user()->role != 'guest')
                     <a class="pull-right button" style="margin-top: -4px;margin-left:4px" onclick="insertData()">Add New Data</a>
+                    @ndif
                     <a href="{{route('export.inventory')}}" class="pull-right button" style="margin-top: -4px" >Export to Excel</a>
                 </ol>
             </div>
