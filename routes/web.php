@@ -13,84 +13,87 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('basic');
 
 Auth::routes();
 
-Route::post('/post-data-inventory', 'inventoryController@store')->name('post.invnty');
+Route::group(['middleware' => ['tamu']], function () {
 
-Route::get('/get-inventory/{id}', 'inventoryController@getInventoryById')->name('get.asset');
+	Route::post('/post-data-inventory', 'inventoryController@store')->name('post.invnty');
 
-Route::post('/post-update-inventory', 'inventoryController@update')->name('update.invnty');
+	Route::get('/get-inventory/{id}', 'inventoryController@getInventoryById')->name('get.asset');
 
-Route::get('/delet-inventory/{id}','inventoryController@delet')->name('delet.inventory');
+	Route::post('/post-update-inventory', 'inventoryController@update')->name('update.invnty');
 
-Route::get('/export-inventory','inventoryController@excel')->name('export.inventory');
+	Route::get('/delet-inventory/{id}','inventoryController@delet')->name('delet.inventory');
 
-Route::get('/home/{id}', 'inventoryController@afterD')->name('home.mesage');
+	Route::get('/export-inventory','inventoryController@excel')->name('export.inventory');
 
-
-Route::get('/get-data-table', 'HomeController@dataTable')->name('data.table');
-
-Route::get('/data-table', 'DatatablesController@anyData')->name('table');
-
-Route::get('/data-table-loc', 'DatatablesController@anyLocation')->name('tableLocation');
-
-Route::get('/data-table-user', 'DatatablesController@anyUser')->name('tableUser');
-
-Route::get('/data-table-ortu', 'DatatablesController@anyOrtu')->name('tableOrtu');
+	Route::get('/home/{id}', 'inventoryController@afterD')->name('home.mesage');
 
 
-Route::get('/get-location', 'LocationController@index')->name('get.location');
+	Route::get('/get-data-table', 'HomeController@dataTable')->name('data.table');
 
-Route::post('/post-location', 'LocationController@store')->name('post.location');
+	Route::get('/data-table', 'DatatablesController@anyData')->name('table');
 
-Route::post('/update-location', 'LocationController@update')->name('update.location');
+	Route::get('/data-table-loc', 'DatatablesController@anyLocation')->name('tableLocation');
 
-Route::get('/delet-location/{id}','LocationController@delet')->name('delet.location');
+	Route::get('/data-table-user', 'DatatablesController@anyUser')->name('tableUser');
 
-Route::get('/get-location-name', 'LocationController@getName')->name('location.name');
-
-
-
-Route::get('/get-ortu', 'OrtuController@index')->name('get.ortu');
-
-Route::post('/post-ortu', 'OrtuController@store')->name('post.ortu');
-
-Route::post('/update-ortu', 'OrtuController@update')->name('update.ortu');
-
-Route::get('/delet-ortu/{id}','OrtuController@delet')->name('delet.ortu');
-
-Route::get('/get-ortu-name', 'OrtuController@getName')->name('ortu.name');
+	Route::get('/data-table-ortu', 'DatatablesController@anyOrtu')->name('tableOrtu');
 
 
-Route::get('/get-role', 'UsersController@getRole')->name('role');
+	Route::get('/get-location', 'LocationController@index')->name('get.location');
 
-Route::post('/set-role', 'UsersController@setRole')->name('setRole');
+	Route::post('/post-location', 'LocationController@store')->name('post.location');
 
-Route::get('/delet-role/{id}','UsersController@destroy')->name('delet.user');
+	Route::post('/update-location', 'LocationController@update')->name('update.location');
 
+	Route::get('/delet-location/{id}','LocationController@delet')->name('delet.location');
 
-Route::get('/posts', 'PostsController@index');
-
-Route::post('/result', 'ResultController@show')->name('result');
-
-Route::get('/newpost', 'HomeController@newpost')->name('newpost');
-
-Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/get-location-name', 'LocationController@getName')->name('location.name');
 
 
 
-Route::get('/image-upload','ImageUploadController@imageUpload')->name('image.upload');
+	Route::get('/get-ortu', 'OrtuController@index')->name('get.ortu');
 
-Route::post('/image-upload','ImageUploadController@imageUploadPost')->name('image.upload.post');
+	Route::post('/post-ortu', 'OrtuController@store')->name('post.ortu');
 
-Route::post('/data-upload','ResultController@saveData')->name('data.upload.post');
+	Route::post('/update-ortu', 'OrtuController@update')->name('update.ortu');
 
-Route::post('/data-saved','ResultController@saveDB')->name('data.post.save');
+	Route::get('/delet-ortu/{id}','OrtuController@delet')->name('delet.ortu');
 
-Route::post('/post/edit','ResultController@edit')->name('edit.post');
+	Route::get('/get-ortu-name', 'OrtuController@getName')->name('ortu.name');
 
-Route::get('user/create', 'HomeController@create');
 
-Route::post('user/create', 'HomeController@store');
+	Route::get('/get-role', 'UsersController@getRole')->name('role');
+
+	Route::post('/set-role', 'UsersController@setRole')->name('setRole');
+
+	Route::get('/delet-role/{id}','UsersController@destroy')->name('delet.user');
+
+
+	Route::get('/posts', 'PostsController@index');
+
+	Route::post('/result', 'ResultController@show')->name('result');
+
+	Route::get('/newpost', 'HomeController@newpost')->name('newpost');
+
+	Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+	Route::get('/image-upload','ImageUploadController@imageUpload')->name('image.upload');
+
+	Route::post('/image-upload','ImageUploadController@imageUploadPost')->name('image.upload.post');
+
+	Route::post('/data-upload','ResultController@saveData')->name('data.upload.post');
+
+	Route::post('/data-saved','ResultController@saveDB')->name('data.post.save');
+
+	Route::post('/post/edit','ResultController@edit')->name('edit.post');
+
+	Route::get('user/create', 'HomeController@create');
+
+	Route::post('user/create', 'HomeController@store');
+});

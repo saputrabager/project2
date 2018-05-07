@@ -58,6 +58,7 @@ $("select").select2({
         });
 
 function insertData(){
+    $('#no_equipment').removeAttr("readonly");
     $('#no_asset').val("");
     $('#no_equipment').val("");
     $('#description').val("");
@@ -67,6 +68,8 @@ function insertData(){
     $('#parent').val("");
     $('#location').val("");
     $('#figure').val("");
+    $('#updateInvent').hide();
+    $('#storeInvent').show();
     $('#myModal').modal('toggle');
 }
 

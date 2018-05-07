@@ -12,7 +12,7 @@
                     <li class="active">Dashboard</li>
                     @if (\Auth::user()->role != 'guest')
                     <a class="pull-right button" style="margin-top: -4px;margin-left:4px" onclick="insertData()">Add New Data</a>
-                    @ndif
+                    @endif
                     <a href="{{route('export.inventory')}}" class="pull-right button" style="margin-top: -4px" >Export to Excel</a>
                 </ol>
             </div>
@@ -332,8 +332,11 @@
                         searchable: false,
                         orderable: false,
                         "render": function (data, type, row, meta) {
-                            var edit = "<a class='pull-left button' style='margin-right: 4px' id='edit'><i class='fa fa-edit'  title='edit'></i></a>";
                             var dlt = '';
+                            var edit = '';
+                            if (role == 'super-admin'||role == 'admin'){
+                                var edit = "<a class='pull-left button' style='margin-right: 4px' id='edit'><i class='fa fa-edit'  title='edit'></i></a>";
+                            }
                             if (role == 'super-admin'){
                                 var dlt = "<a onclick='delet(" + row.NO_EQUIPMENT + ")' class='pull-left button-red' style='margin-right: 4px' id='dlt'><i class='fa fa-trash'  title='delete'></i></a>";
                             }
