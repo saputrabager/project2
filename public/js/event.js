@@ -42,6 +42,15 @@ $('#tableOrtu tbody').on( 'click', '#edit', function () {
     $('#storeOrtu').hide();
 } );
 
+$('#tableCategory tbody').on( 'click', '#edit', function () {
+    var data = $('#tableCategory').DataTable().row( $(this).parents('tr') ).data();
+    $('#category').val(data['CATEGORY']);
+    $('#id').val(data['ID']);
+    $('#CategoryModal').modal('toggle');
+    $('#updateCategory').show();
+    $('#storeCategory').hide();
+} );
+
 $('#userTable tbody').on( 'click', '#edit', function () {
     var data = $('#userTable').DataTable().row( $(this).parents('tr') ).data();
     $('#name').val(data['name']);
@@ -71,6 +80,30 @@ function insertData(){
     $('#updateInvent').hide();
     $('#storeInvent').show();
     $('#myModal').modal('toggle');
+}
+
+function insertOrtu(){
+    $('#ortu').val('');
+    $('#id').val('');
+    $('#locModal').modal('toggle');
+    $('#updateOrtu').hide();
+    $('#storeOrtu').show();
+}
+
+function insertLocation(){
+    $('#loc_name').val('');
+    $('#id').val('');
+    $('#locModal').modal('toggle');
+    $('#updateLoc').hide();
+    $('#storeLoc').show();
+}
+
+function insertCategory(){
+    $('#category').val('');
+    $('#id').val('');
+    $('#CategoryModal').modal('toggle');
+    $('#updateCategory').hide();
+    $('#storeCategory').show();
 }
 
 function delet(id) {
@@ -559,6 +592,157 @@ function insertDataAsset(){
             .then((willDelete) => {
               if (willDelete) {
                 var url = BASE_URL + "/delet-ortu/" + id; 
+                                $.ajax({
+                                    url      : url,
+                                    dataType : "JSON",
+                                    method   : "GET",
+                                    success  : function(response) {
+                                        // alert('yo');
+                                        if (response == '1') {
+                                            swal({
+                                                  title: "Good job!",
+                                                  text: "You have delete the data!",
+                                                  icon: "success",
+                                                  button: "Aww yiss!",
+                                                });
+                                            $('#tableOrtu').DataTable().draw();
+                                        } 
+                                    },
+                                    error : function(response) {
+                                    }
+                                });
+              } else {
+                swal("Your imaginary file is safe!");
+              }
+            });
+    }
+
+    function insertDataCategory(){
+            
+            $("#fCategory").validate({
+            ignore: [],
+            debug:true,
+            rules : {
+                category : "required",
+            },
+            messages : {
+                category : " Parent name is required !",                    
+            },
+            errorElement: 'span',
+            errorClass: 'help-block text-red',
+            submitHandler: function() {
+                fdata = new FormData($('form#fCategory')[0]);
+                $.ajax({
+                    type: "POST",
+                    url: BASE_URL + '/post-category',
+                    dataType: 'JSON',
+                    data: fdata,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(msg){
+                        var validator = {};
+                        if (msg == '0'){
+                            var $validator = $("#fCategory").validate();
+                            var errors;
+
+                            /* Build up errors object, name of input and error message: */
+                            errors = { category: "Parent name sudah terdaftar" };
+                            /* Show errors on the form */
+                            $validator.showErrors(errors);
+                        } else {
+                            swal({
+                                  title: "Success!",
+                                  text: "Your data have ben save!",
+                                  icon: "success",
+                                  button: "OK!",
+                                });
+                            $('#category').val("");
+                            $('#tableCategory').DataTable().draw();
+                        }
+                    },
+                    error: function(){
+                        swal({
+                              title: "Error!",
+                              text: "Operation failed",
+                              icon: "error",
+                              button: "OK!",
+                            });
+                    }
+                });
+            }
+        });
+    }
+
+    function updateDataCategory(){
+            
+            $("#fCategory").validate({
+            ignore: [],
+            debug:true,
+            rules : {
+                category : "required",
+            },
+            messages : {
+                category : "Parent name is required !",                    
+            },
+            errorElement: 'span',
+            errorClass: 'help-block text-red',
+            submitHandler: function() {
+                fdata = new FormData($('form#fCategory')[0]);
+                $.ajax({
+                    type: "POST",
+                    url: BASE_URL + '/update-category',
+                    dataType: 'JSON',
+                    data: fdata,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(msg){
+                        var validator = {};
+                        if (msg == '0'){
+                            var $validator = $("#fCategory").validate();
+                            var errors;
+
+                            /* Build up errors object, name of input and error message: */
+                            errors = { category: "category name sudah terdaftar" };
+                            /* Show errors on the form */
+                            $validator.showErrors(errors);
+                        } else {
+                            swal({
+                                  title: "Success!",
+                                  text: "Your data have ben update!",
+                                  icon: "success",
+                                  button: "OK!",
+                                });
+                            $('#category').val("");
+                            $('#tableCategory').DataTable().draw();
+                            $('#CategoryModal').modal('toggle');
+                        }
+                    },
+                    error: function(){
+                        swal({
+                              title: "Error!",
+                              text: "Operation failed",
+                              icon: "error",
+                              button: "OK!",
+                            });
+                    }
+                });
+            }
+        });
+    }
+
+    function deletCategory(id) {
+        swal({
+              title: "Are you sure?",
+              text: "Once deleted, you will not be able to recover!",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                var url = BASE_URL + "/delet-category/" + id; 
                                 $.ajax({
                                     url      : url,
                                     dataType : "JSON",

@@ -11,7 +11,7 @@
                 <ol class="breadcrumb">
                     <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li class="active">Location</li>
-                    <a class="pull-right button" style="margin-top: -4px" data-toggle="modal" data-target="#locModal">Add New Data</a>
+                    <a class="pull-right button" style="margin-top: -4px" onclick="insertLocation()">Add New Data</a>
                 </ol>
             </div>
         </section>

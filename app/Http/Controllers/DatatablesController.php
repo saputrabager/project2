@@ -7,6 +7,7 @@ use App\User;
 use App\inventory;
 use App\Location;
 use App\Ortu;
+use App\Category;
 use DataTables;
 
 class DatatablesController extends Controller
@@ -37,6 +38,16 @@ class DatatablesController extends Controller
     $ortu = new Ortu;
 
     $model = $ortu::query();
+
+    return DataTables::of($model)->toJson();
+    }
+
+    public function anyCategory()
+    {
+
+    $category = new Category;
+
+    $model = $category::query();
 
     return DataTables::of($model)->toJson();
     }

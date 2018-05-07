@@ -42,6 +42,8 @@ Route::group(['middleware' => ['tamu']], function () {
 
 	Route::get('/data-table-ortu', 'DatatablesController@anyOrtu')->name('tableOrtu');
 
+	Route::get('/data-table-category', 'DatatablesController@anyCategory')->name('tableCategory');
+
 
 	Route::get('/get-location', 'LocationController@index')->name('get.location');
 
@@ -64,6 +66,17 @@ Route::group(['middleware' => ['tamu']], function () {
 	Route::get('/delet-ortu/{id}','OrtuController@delet')->name('delet.ortu');
 
 	Route::get('/get-ortu-name', 'OrtuController@getName')->name('ortu.name');
+
+
+	Route::get('/get-category', 'CategoryController@index')->name('get.category');
+
+	Route::post('/post-category', 'CategoryController@store')->name('post.category');
+
+	Route::post('/update-category', 'CategoryController@update')->name('update.category');
+
+	Route::get('/delet-category/{id}','CategoryController@delet')->name('delet.category');
+
+	Route::get('/get-category-name', 'CategoryController@getName')->name('category.name');
 
 
 	Route::get('/get-role', 'UsersController@getRole')->name('role');

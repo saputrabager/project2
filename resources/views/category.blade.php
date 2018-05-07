@@ -6,12 +6,12 @@
             <div class="row">
                 <h1>
                     Dashboard
-                    <small>Parent</small>
+                    <small>Category</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Parent</li>
-                    <a class="pull-right button" style="margin-top: -4px" onclick="insertOrtu()">Add New Data</a>
+                    <li class="active">Category</li>
+                    <a class="pull-right button" style="margin-top: -4px" onclick="insertCategory()">Add New Data</a>
                 </ol>
             </div>
         </section>
@@ -19,11 +19,11 @@
         <section class="content">
             <div class="row" style="margin-bottom: 15px">
                 <div class="col-md-12">
-                    <table id="tableOrtu" class="table table-bordered table-hover stripe">
+                    <table id="tableCategory" class="table table-bordered table-hover stripe">
                         <thead>
                             <tr>
                                 <th>NO</th>
-                                <th class="loc">PARENT</th>
+                                <th class="loc">CATEGORY</th>
                                 <th>ACTION</th>
                             </tr>
                         </thead>
@@ -35,7 +35,7 @@
         </section>
 
         <!-- Modal -->
-    <div id="locModal" class="modal fade" role="dialog">
+    <div id="CategoryModal" class="modal fade" role="dialog">
           <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -44,19 +44,19 @@
                 <h4 class="modal-title">Input Data</h4>
               </div>
               <div class="modal-body">
-                <form id="fOrtu"  method="POST" class="form-horizontal" role="form">
+                <form id="fCategory"  method="POST" class="form-horizontal" role="form">
                     {{csrf_field()}}
                   <div class="form-group">
-                    <label  class="col-sm-2 control-label" for="ortu">Parent Name</label>
+                    <label  class="col-sm-2 control-label" for="category">Category Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="ortu" name="ortu" placeholder="Parent Name"/>
+                        <input type="text" class="form-control" id="category" name="category" placeholder="Category Name"/>
                     </div>
                   </div>
                   <div class="form-group">
-                    <input type="hidden" class="form-control" id="id" name="id" placeholder="Parent Name"/>
+                    <input type="hidden" class="form-control" id="id" name="id" placeholder="category Name"/>
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button id="updateOrtu" type="submit" onclick="updateDataOrtu()" class="btn btn-default" style="display: none;">Update</button>
-                        <button id="storeOrtu" type="submit" onclick="insertDataOrtu()" class="btn btn-default">Save</button>
+                        <button id="updateCategory" type="submit" onclick="updateDataCategory()" class="btn btn-default" style="display: none;">Update</button>
+                        <button id="storeCategory" type="submit" onclick="insertDataCategory()" class="btn btn-default">Save</button>
                         <button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                   </div>
@@ -70,10 +70,10 @@
 @section('scripts')
 <script type="text/javascript">
 	jQuery(function($){
-		$('#tableOrtu').DataTable({
+		$('#tableCategory').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('tableOrtu') !!}',
+                ajax: '{!! route('tableCategory') !!}',
                 buttons: [
                     'copy', 'excel', 'pdf'
                 ],
@@ -85,7 +85,7 @@
                             return meta.settings._iDisplayStart + meta.row + 1;
                         },
                     },
-                    { data: 'ORTU', name: 'ORTU' },
+                    { data: 'CATEGORY', name: 'CATEGORY' },
                     {
                         searchable: false,
                         orderable: false,
@@ -93,7 +93,7 @@
                             var edit = "<a class='pull-left button' style='margin-right: 4px' id='edit'><i class='fa fa-edit'  title='edit'></i></a>";
                             var dlt = '';
                             if (role == 'super-admin'){
-                                var dlt = "<a onclick='deletOrtu(" + row.ID + ")' class='pull-left button-red' style='margin-right: 4px' id='dlt'><i class='fa fa-trash'  title='delete'></i></a>";
+                                var dlt = "<a onclick='deletCategory(" + row.ID + ")' class='pull-left button-red' style='margin-right: 4px' id='dlt'><i class='fa fa-trash'  title='delete'></i></a>";
                             }
                             return edit+dlt;
                         },
@@ -103,14 +103,6 @@
                     { width: "20%", targets: 2 }
                 ]
             });
-
-		// $('#tableOrtu').Tabledit({
-		//     url: 'example.php',
-		//     columns: {
-		//         identifier: [0, 'id'],
-		//         editable: [[1, 'LOC_NAME']]
-		//     }
-		// });
 	});
 </script>
 	

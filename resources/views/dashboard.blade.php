@@ -98,18 +98,18 @@
                   <div class="form-group">
                     <label class="col-sm-2 control-label" for="category" >Category</label>
                     <div class="col-sm-10">
-                        <select class="form-control" id="category" name="category" >
+                        <select class="form-control" id="category" name="category" data-placeholder="select Category">
                             <option></option>
-                            <option value="Unit">Unit</option>
+                            <!-- <option value="Unit">Unit</option>
                             <option value="Main Equipment">Main Equipment</option>
-                            <option value="Accessories">Accessories</option>
+                            <option value="Accessories">Accessories</option> -->
                         </select>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2 control-label" for="parent" >Parent</label>
                     <div class="col-sm-10">
-                        <select type="text" class="form-control select2" id="parent" name="parent" data-placeholder="select Parent">
+                        <select type="text" class="form-control select2" id="parent" name="parent" data-placeholder="select room">
                             <option></option>
                         </select>
                     </div>
@@ -245,6 +245,21 @@
                 success: function(msg){
                     $.each(msg, function(key, val) {
                         $('#parent').append("<option value='"+val.ORTU+"'>"+val.ORTU+"</option>");
+                    })
+                },
+                error: function(msg){}
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "{{ route('category.name') }}",
+                dataType: 'JSON',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(msg){
+                    $.each(msg, function(key, val) {
+                        $('#category').append("<option value='"+val.CATEGORY+"'>"+val.CATEGORY+"</option>");
                     })
                 },
                 error: function(msg){}

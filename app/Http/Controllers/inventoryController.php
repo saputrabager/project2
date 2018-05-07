@@ -169,6 +169,12 @@ class inventoryController extends Controller
                     // $cells->setBackground('#67af09');
                 });
 
+                $sheet->setColumnFormat(array(
+                    'A' => '0',
+                    'B' => '0',
+                    'E' => '"Rp "#,##0.00_-'
+                ));
+
                 $sheet->setBorder('A1:L'.$row, 'thin');
                
                 $sheet->fromArray($employees,null,'A1',false,false)->prependRow(array(
