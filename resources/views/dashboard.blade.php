@@ -29,6 +29,8 @@
                                 <th>DESCRIPTION</th>
                                 <th>MIC</th>
                                 <th>BOOK VALUE</th>
+                                <th>MPI</th>
+                                <th>COC</th>
                                 <th>CATEGORY</th>
                                 <th>PARENT</th>
                                 <th>LOCATION</th>
@@ -93,6 +95,18 @@
                     <label class="col-sm-2 control-label" for="book_val" >Book Value</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="book_val" name="book_val" placeholder="Book Value"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="mpi" >MPI</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control date" id="mpi" name="mpi" placeholder="MPI"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="coc" >COC</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control date" id="coc" name="coc" placeholder="COC"/>
                     </div>
                   </div>
                   <div class="form-group">
@@ -211,6 +225,10 @@
     <script>
         jQuery(function($) {
 
+            $('.date').datepicker({
+                format: "yyyy/mm/dd"
+            });
+
             var delet = '{{ (isset($delete) ? $delete : '' )}}';
             if (delet != ''){
                 swal({
@@ -308,11 +326,11 @@
             // } );
 
             $('#pageTable').DataTable({
-                dom: "Bfrtip",
+                // dom: "Bfrtip",
                 processing: true,
+                scrollX:true,
                 serverSide: true,
                 ajax: '{!! route('table') !!}',
-                display: "bootstrap",
                 columns: [
                     {
                         searchable: false,
@@ -325,7 +343,9 @@
                     { data: 'NO_ASSET', name: 'NO_ASSET' },
                     { data: 'DESCRIPTION', name: 'DESCRIPTION' },
                     { data: 'MIC', name: 'MIC' },
-                    { data: 'BOOK_VALUE', render: $.fn.dataTable.render.number( ',', '.', 0, 'Rp ' )},
+                    { data: 'BOOK_VALUE', render: $.fn.dataTable.render.number( ',', '.', 0 )},
+                    { data: 'MPI', name: 'MPI' },
+                    { data: 'COC', name: 'COC' },
                     { data: 'CATEGORY', name: 'CATEGORY' },
                     { data: 'PARENT', name: 'PARENT' },
                     { data: 'LOCATION', name: 'LOCATION' },
@@ -349,7 +369,7 @@
                         "render": function (data, type, row, meta) {
                             var dlt = '';
                             var edit = '';
-                            if (role == 'super-admin'||role == 'admin'){
+                            if (role == 'super-admin' || role == 'admin' || role == 'user'){
                                 var edit = "<a class='pull-left button' style='margin-right: 4px' id='edit'><i class='fa fa-edit'  title='edit'></i></a>";
                             }
                             if (role == 'super-admin'){

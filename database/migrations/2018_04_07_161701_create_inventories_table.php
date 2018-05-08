@@ -19,6 +19,8 @@ class CreateInventoriesTable extends Migration
             $table->string('DESCRIPTION');
             $table->string('MIC');
             $table->string('BOOK_VALUE');
+            $table->date('MPI');
+            $table->date('COC');
             $table->string('CATEGORY');
             $table->string('PARENT');
             $table->string('LOCATION');

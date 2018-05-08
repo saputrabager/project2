@@ -166,3 +166,7 @@ tr:nth-child(even) {
 .user-header p {
     color: blue !important
 }
+
+th, td {
+    white-space: nowrap;
+}

@@ -13,7 +13,7 @@ class inventory extends Model
      * @var array
      */
     protected $fillable = [
-        'NO_EQUIPMENT','NO_ASSET', 'DESCRIPTION', 'MIC','BOOK_VALUE', 'CATEGORY', 'PARENT', 'LOCATION', 'CONDITIONS'. 'FIGURE'
+        'NO_EQUIPMENT','NO_ASSET', 'DESCRIPTION', 'MIC','BOOK_VALUE', 'MPI', 'COC', 'CATEGORY', 'PARENT', 'LOCATION', 'CONDITIONS'. 'FIGURE'
     ];
 
     

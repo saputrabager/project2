@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}" />
     <link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/bootstrap-datepicker.min.css')}}" />
     <link rel="stylesheet" href="{{asset('vendor/font-awesome-4.7.0/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/skins/_all-skins.min.css')}}" />
     <link rel="stylesheet" href="{{asset('vendor/font-awesome/css/font-awesome.min.css')}}" />
@@ -59,6 +60,8 @@
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     <!-- event js -->
     <script src="{{ asset('js/event.js') }}"></script>
+    <!-- datepicker -->
+    <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
     <script type="text/javascript">
         role = '{{Auth::user()->role}}';
         BASE_URL = "{{URL::to('/')}}";

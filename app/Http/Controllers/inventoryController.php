@@ -50,6 +50,8 @@ class inventoryController extends Controller
                 $inventory->DESCRIPTION = $input['description'];
                 $inventory->MIC = $input['mic'];
                 $inventory->BOOK_VALUE = $input['book_val'];
+                $inventory->MPI = $input['mpi'];
+                $inventory->COC = $input['coc'];
                 $inventory->CATEGORY = $input['category'];
                 $inventory->PARENT = $input['parent'];
                 $inventory->LOCATION = $input['location'];
@@ -73,6 +75,8 @@ class inventoryController extends Controller
                 $inventory->DESCRIPTION = $input['description'];
                 $inventory->MIC = $input['mic'];
                 $inventory->BOOK_VALUE = $input['book_val'];
+                $inventory->MPI = $input['mpi'];
+                $inventory->COC = $input['coc'];
                 $inventory->CATEGORY = $input['category'];
                 $inventory->PARENT = $input['parent'];
                 $inventory->LOCATION = $input['location'];
@@ -104,6 +108,8 @@ class inventoryController extends Controller
                     'DESCRIPTION' => $input['description'],
                     'MIC' => $input['mic'],
                     'BOOK_VALUE' => $input['book_val'],
+                    'MPI' => $input['mpi'],
+                    'COC' => $input['coc'],
                     'CATEGORY' => $input['category'],
                     'PARENT' => $input['parent'],
                     'LOCATION' => $input['location'],
@@ -121,6 +127,8 @@ class inventoryController extends Controller
                     'DESCRIPTION' => $input['description'],
                     'MIC' => $input['mic'],
                     'BOOK_VALUE' => $input['book_val'],
+                    'MPI' => $input['mpi'],
+                    'COC' => $input['coc'],
                     'CATEGORY' => $input['category'],
                     'PARENT' => $input['parent'],
                     'LOCATION' => $input['location'],
@@ -183,6 +191,8 @@ class inventoryController extends Controller
                     'Description',
                     'MIC',
                     'AQC. Value',
+                    'MPI',
+                    'COC',
                     'Category',
                     'Room',
                     'Location',
