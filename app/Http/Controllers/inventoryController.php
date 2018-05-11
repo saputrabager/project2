@@ -101,9 +101,9 @@ class inventoryController extends Controller
                 $image->move($destinationPath, $input['imagename']);
 
                 // $this->postImage->add($input);
-                $no_asset = $inventory::where('no_asset', $input['no_asset'])
+                $no_asset = $inventory::where('NO_EQUIPMENT', $input['no_equipment'])
                 ->update([
-                    'NO_EQUIPMENT' => $input['no_equipment'],
+                    // 'NO_EQUIPMENT' => $input['no_equipment'],
                     'NO_ASSET' => $input['no_asset'],
                     'DESCRIPTION' => $input['description'],
                     'MIC' => $input['mic'],
@@ -120,9 +120,9 @@ class inventoryController extends Controller
                 $validate = 1;
                 return $validate;
             } else {
-                $no_asset = $inventory::where('no_asset', $input['no_asset'])
+                $no_asset = $inventory::where('NO_EQUIPMENT', $input['no_equipment'])
                 ->update([
-                    'NO_EQUIPMENT' => $input['no_equipment'],
+                    // 'NO_EQUIPMENT' => $input['no_equipment'],
                     'NO_ASSET' => $input['no_asset'],
                     'DESCRIPTION' => $input['description'],
                     'MIC' => $input['mic'],

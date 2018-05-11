@@ -328,7 +328,7 @@
             $('#pageTable').DataTable({
                 // dom: "Bfrtip",
                 processing: true,
-                scrollX:true,
+                // scrollX:true,
                 serverSide: true,
                 ajax: '{!! route('table') !!}',
                 columns: [

@@ -16,6 +16,8 @@ $('#pageTable tbody').on( 'click', '#edit', function () {
     $('#description').val(data['DESCRIPTION']);
     $('#mic').val(data['MIC']);
     $('#book_val').val(data['BOOK_VALUE']);
+    $('#mpi').val(data['MPI']);
+    $('#coc').val(data['COC']);
     $('#category').val(data['CATEGORY']);
     $('#parent').val(data['PARENT']).trigger('change');
     $('#location').val(data['LOCATION']).trigger('change');
@@ -73,6 +75,8 @@ function insertData(){
     $('#description').val("");
     $('#mic').val("");
     $('#book_val').val("");
+    $('#mpi').val('');
+    $('#coc').val('');
     $('#category').val("");
     $('#parent').val("");
     $('#location').val("");
@@ -211,6 +215,8 @@ function insertDataAsset(){
                                 $('#description').val("");
                                 $('#mic').val("");
                                 $('#book_val').val("");
+                                $('#mpi').val('');
+                                $('#coc').val('');
                                 $('#category').val("");
                                 $('#parent').val("");
                                 $('#location').val("");
