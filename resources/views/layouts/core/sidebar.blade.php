@@ -18,10 +18,10 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{route('home')}}"><i class="fa fa-circle-o"></i>Dashboard</a></li>
-                    @if (\Auth::user()->role != 'guest' || Auth::user()->role != 'user')
-                    <li><a href="{{route('get.location')}}"><i class="fa fa-circle-o"></i>Add New Location</a></li>
-                    <li><a href="{{route('get.ortu')}}"><i class="fa fa-circle-o"></i>Add New Parent</a></li>
-                    <li><a href="{{route('get.category')}}"><i class="fa fa-circle-o"></i>Add New Category</a></li>
+                    @if (\Auth::user()->role != 'guest')
+                    <li><a href="{{route('get.location')}}" class="add"><i class="fa fa-circle-o"></i>Add New Location</a></li>
+                    <li><a href="{{route('get.ortu')}}" class="add"><i class="fa fa-circle-o"></i>Add New Parent</a></li>
+                    <li><a href="{{route('get.category')}}" class="add"><i class="fa fa-circle-o"></i>Add New Category</a></li>
                     @endif
                     @if (\Auth::user()->role == 'super-admin')
                     <li><a href="{{route('role')}}"><i class="fa fa-circle-o"></i>Set User Access</a></li>

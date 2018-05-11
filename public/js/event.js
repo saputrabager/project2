@@ -1,5 +1,11 @@
 
 // var BASE_URL = window.location.hostname + ":8000/";
+jQuery(function($) {
+    
+            if (role == 'user'){
+    $('li a.add').remove();
+}
+});
 
 function showErrors(errorMessage, errormap, errorlist) {
     var val = this;
