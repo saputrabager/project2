@@ -24,6 +24,7 @@ $('#pageTable tbody').on( 'click', '#edit', function () {
     $('#myModal').modal('toggle');
     $('#updateInvent').show();
     $('#storeInvent').hide();
+    $('#no_equipment').attr('readonly', 'readonly');
 } );
 
 $('#tableLoc tbody').on( 'click', '#edit', function () {

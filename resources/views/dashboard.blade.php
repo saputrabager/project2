@@ -29,12 +29,12 @@
                                 <th>DESCRIPTION</th>
                                 <th>MIC</th>
                                 <th>BOOK VALUE</th>
-                                <th>MPI</th>
-                                <th>COC</th>
                                 <th>CATEGORY</th>
                                 <th>PARENT</th>
                                 <th>LOCATION</th>
                                 <th>CONDITIONS</th>
+                                <th>MPI</th>
+                                <th>COC</th>
                                 <th>FIGURE</th>
                                 <th>ACTION</th>
                             </tr>
@@ -344,12 +344,12 @@
                     { data: 'DESCRIPTION', name: 'DESCRIPTION' },
                     { data: 'MIC', name: 'MIC' },
                     { data: 'BOOK_VALUE', render: $.fn.dataTable.render.number( ',', '.', 0 )},
-                    { data: 'MPI', name: 'MPI' },
-                    { data: 'COC', name: 'COC' },
                     { data: 'CATEGORY', name: 'CATEGORY' },
                     { data: 'PARENT', name: 'PARENT' },
                     { data: 'LOCATION', name: 'LOCATION' },
                     { data: 'CONDITIONS', name: 'CONDITIONS' },
+                    { data: 'MPI', name: 'MPI' },
+                    { data: 'COC', name: 'COC' },
                     {
                         searchable: false,
                         orderable: false,
