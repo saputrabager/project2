@@ -156,7 +156,7 @@
                   </div>
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button id="updateInvent" type="submit" onclick="updatetDataAsset()" class="btn btn-default" style="display: none;">Update</button>
+                        <button id="updateInvent" type="submit" class="btn btn-default" style="display: none;">Update</button>
                         <button id="storeInvent" type="submit" onclick="insertDataAsset()" class="btn btn-default">Save</button>
                         <button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
@@ -328,7 +328,7 @@
             $('#pageTable').DataTable({
                 // dom: "Bfrtip",
                 processing: true,
-                // scrollX:true,
+                scrollX:true,
                 serverSide: true,
                 ajax: '{!! route('table') !!}',
                 columns: [
@@ -387,6 +387,10 @@
                     // { extend: "remove", editor: editor }
                 ]
             });
+
+            $(".dataTables_scrollHeadInner").css({"width":"100%"});
+
+$(".table ").css({"width":"100%"});
 
             // validate file size
             $('#figure').bind('change', function() {

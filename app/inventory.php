@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class inventory extends Model
 {
     public $primaryKey = 'NO_EQUIPMENT';
+    public $incrementing = false;
     /**
      * The attributes that are mass assignable.
      *

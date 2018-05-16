@@ -24,7 +24,7 @@ $('#pageTable tbody').on( 'click', '#edit', function () {
     $('#book_val').val(data['BOOK_VALUE']);
     $('#mpi').val(data['MPI']);
     $('#coc').val(data['COC']);
-    $('#category').val(data['CATEGORY']);
+    $('#category').val(data['CATEGORY']).trigger('change');
     $('#parent').val(data['PARENT']).trigger('change');
     $('#location').val(data['LOCATION']).trigger('change');
     $('#myModal').modal('toggle');
@@ -161,7 +161,10 @@ function insertDataAsset(){
             debug:true,
             rules : {
                 // no_asset : "required",
-                no_equipment : "required",
+                no_equipment : { 
+                    required    : true,
+                    number      : true
+                },
                 description : "required",
                 // mic : "required",
                 // book_val : "required",
@@ -175,7 +178,10 @@ function insertDataAsset(){
             },
             messages : {
                 // no_asset : "number asset is required !",
-                no_equipment: "number equipment is required !",
+                no_equipment: { 
+                    required    : "number equipment is required !",
+                    number      : "Number Only"
+                },
                 description : "Description is required !",
                 // mic : "MIC is required !",
                 // book_val : "Book Value is required !",
@@ -245,28 +251,34 @@ function insertDataAsset(){
             });
         }
 
-    function updatetDataAsset(){
-            
+    // function updatetDataAsset(){
+    $('#updateInvent').on( 'click', function () {
         $("#formInput").validate({
         ignore: [],
         debug:true,
         rules : {
-            no_asset : "required",
-            no_equipment : "required",
+            // no_asset : "required",
+            no_equipment : { 
+                    required    : true,
+                    number      : true
+                },
             description : "required",
-            mic : "required",
-            book_val : "required",
+            // mic : "required",
+            // book_val : "required",
             category : "required",
             parent : "required",
             location : "required",
             condition : "required"
         },
         messages : {
-            no_asset : "number asset is required !",
-            no_equipment: "number equipment is required !",
+            // no_asset : "number asset is required !",
+            no_equipment: { 
+                    required    : "number equipment is required !",
+                    number      : "Number Only"
+                },
             description : "Description is required !",
-            mic : "MIC is required !",
-            book_val : "Book Value is required !",
+            // mic : "MIC is required !",
+            // book_val : "Book Value is required !",
             category : "Category is required !",
             parent : "Parent is required !",
             location : "Location is required !",
@@ -326,7 +338,7 @@ function insertDataAsset(){
                 });
             }
         });
-    }
+    });
 
     function insertDataLoc(){
             
